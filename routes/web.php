@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Agregando las nuevas rutas 
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MetadataController;
 use App\Http\Controllers\SearchController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 //Rutas para el componente de comunidad
@@ -29,6 +30,9 @@ Route::resource('/community', CommunityController::class)->only(['index']);
 
 //Rutas para el componente de archivos
 Route::resource('/file', FileController::class)->only(['index']);
+
+//Rutas para el componente de home
+Route::resource('/home', [HomeController::class, 'index'])->name('home');
 
 //Rutas para el componente de login
 Route::resource('/login', LoginController::class)->only(['index']);
