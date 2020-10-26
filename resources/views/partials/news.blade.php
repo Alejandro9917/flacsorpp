@@ -56,7 +56,7 @@
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
             <table class="table table-bordered">
                 <th class="bg-principal">
-                    Nombre
+                    AUTOR
                 </th>
                 <tr>
                     <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
@@ -84,7 +84,7 @@
         <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
             <table class="table table-bordered">
                 <th class="bg-principal">
-                    AUTOR
+                    TAG
                 </th>
                 <tr>
                     <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
