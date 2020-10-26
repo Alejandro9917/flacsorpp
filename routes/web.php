@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Agregando las nuevas rutas 
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MetadataController;
+use App\Http\Controllers\SearchController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Rutas para el componente de comunidad
+Route::resource('/community', CommunityController::class)->only(['index']);
+
+//Rutas para el componente de archivos
+Route::resource('/file', FileController::class)->only(['index']);
+
+//Rutas para el componente de login
+Route::resource('/login', LoginController::class)->only(['index']);
+
+//Rutas para el componente de la metadata
+Route::resource('/metadata', MetadataController::class)->only(['index']);
+
+//Rutas para el componente de búsqueda
+Route::resource('/search', SearchController::class)->only(['index']);
