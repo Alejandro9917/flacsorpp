@@ -32,7 +32,7 @@ Route::resource('/community', CommunityController::class)->only(['index']);
 Route::resource('/file', FileController::class)->only(['index']);
 
 //Rutas para el componente de home
-Route::resource('/home', [HomeController::class, 'index'])->name('home');
+Route::resource('/home', HomeController::class)->only(['index']);
 
 //Rutas para el componente de login
 Route::resource('/login', LoginController::class)->only(['index']);
