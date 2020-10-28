@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-//Agregando las nuevas rutas 
+//Agregando las nuevas rutas
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
@@ -13,7 +13,7 @@ use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|-----------------------------------------------------  ---------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -32,7 +32,7 @@ Route::resource('/community', CommunityController::class)->only(['index']);
 Route::resource('/file', FileController::class)->only(['index']);
 
 //Rutas para el componente de home
-Route::resource('/home', [HomeController::class, 'index'])->name('home');
+Route::resource('/home', HomeController::class)->only(['index']);
 
 //Rutas para el componente de login
 Route::resource('/login', LoginController::class)->only(['index']);

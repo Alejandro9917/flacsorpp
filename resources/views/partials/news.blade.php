@@ -10,9 +10,9 @@
 
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered shadow-lg">
                 <tr>
-                    <th width="60" class="bg-principal"></th>
+                    <th class="bg-second"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas en Educacion</p>
                         <small>
@@ -22,7 +22,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg-principal"></th>
+                    <th class="bg-second"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas sobre Agua</p>
                         <small>
@@ -32,7 +32,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg-principal"></th>
+                    <th class="bg-second"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas Territoriales</p>
                         <small>
@@ -41,7 +41,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="bg-principal"></th>
+                    <th class="bg-second"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas Migratorias</p>
                         <small>
@@ -53,9 +53,9 @@
 
         </div>
 
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
-                <th class="bg-principal">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <table class="table table-bordered shadow-lg">
+                <th class="bg-second">
                     AUTOR
                 </th>
                 <tr>
@@ -81,9 +81,9 @@
                 </tr>
             </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
-                <th class="bg-principal">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <table class="table table-bordered shadow-lg">
+                <th class="bg-second">
                     TAG
                 </th>
                 <tr>
@@ -109,9 +109,9 @@
                 </tr>
             </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
-                <th class="bg-principal">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2">
+            <table class="table table-bordered shadow-lg">
+                <th class="bg-second">
                     FECHA
                 </th>
                 <tr>

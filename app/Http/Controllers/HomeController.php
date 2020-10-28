@@ -13,7 +13,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        return view('partials.app');
         return view('home');
     }
 
