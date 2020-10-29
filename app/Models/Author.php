@@ -12,12 +12,12 @@ class Author extends Model
     protected $table = 'authors';
 
     protected $fillable = [
-        'id', 'first_name', 'second_name', 'first_lastname', 'second_lastname',
-        'birthday', 'email', 'created_at', 'updated_at'
+        'first_name', 'second_name', 'first_lastname', 'second_lastname',
+        'birthday', 'email'
     ];
 
     //Relacion con file_autor
     public function files(){
-        return $this->belongsToMany(File::class);
+        return $this->belongsToMany(File::class, 'files_authors', 'author_id', 'file_id');
     }
 }

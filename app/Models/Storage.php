@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FailedJob extends Model
+class Storage extends Model
 {
     use HasFactory;
 
-    protected $table = 'failed_jobs';
+    protected $table = 'storages';
 
     protected $fillable = [
-        'uuid', 'connection', 'queue', 'payload',
-        'exception', 'failed_at'
+        'link', 'cod_father_storage', 'file_id', 
     ];
 }

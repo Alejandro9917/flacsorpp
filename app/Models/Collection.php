@@ -12,9 +12,9 @@ class Collection extends Model
     protected $table = 'collections';
 
     protected $fillable = [
-        'id', 'name', 'slug', 'priority', 'description', 'is_folder',
+        'name', 'slug', 'priority', 'description', 'is_folder',
         'is_public', 'status', 'created_by', 'collection_id',
-        'published_at', 'created_at', 'updated_at'
+        'published_at',
     ];
 
     //Relación con Users

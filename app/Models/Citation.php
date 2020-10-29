@@ -12,8 +12,7 @@ class Citation extends Model
     protected $table = 'citations';
 
     protected $fillable = [
-        'id', 'content', 'title', 'pointer', 'reference', 'file_id',
-        'created_at', 'updated_at'
+        'content', 'title', 'pointer', 'reference', 'file_id',
     ];
 
     //Relacion con files

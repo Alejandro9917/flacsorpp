@@ -12,8 +12,7 @@ class File extends Model
     protected $table = 'files';
 
     protected $fillable = [
-        'id', 'name', 'type', 'status', 'created_by', 'collection_id',
-        'created_at', 'updated_at'
+        'name', 'type', 'status', 'created_by', 'collection_id',
     ];
 
     //Relación con Authors
@@ -29,6 +28,11 @@ class File extends Model
     //Relacion con Collection
     public function collection(){
         return $this->belongsTo(Collection::class, 'collection_id', 'id');
+    }
+
+    //Relación con Tags
+    public function tags(){
+        return $this->belongsToMany(Tags::class, 'file_tags', 'file_id', 'tag_id');
     }
 
     //Relacion con Users
