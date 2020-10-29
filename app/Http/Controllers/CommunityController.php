@@ -13,7 +13,7 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        return 'Página para las comunidades';
+        return view('community.community');
     }
 
     /**
