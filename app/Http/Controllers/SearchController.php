@@ -13,7 +13,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        return 'Página para las búsquedas';
+        return view('search.search');
     }
 
     /**
