@@ -1,18 +1,14 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <h3 class="font-weight-bold mt-3 mb-3">Politicas Publicas</h3>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <h3 class="font-weight-bold mt-3 mb-3">Busqueda por:</h3>
-        </div>
 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-
-            <table class="table table-bordered">
+            <table class="table table-bordered shadow-lg">
                 <tr>
-                    <th width="60" class="bg-principal"></th>
+                    <th class="bg-principal"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas en Educacion</p>
                         <small>
@@ -53,9 +49,14 @@
 
         </div>
 
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
-                <th class="bg-principal">
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h3 class="font-weight-bold mt-3 mb-3">Busqueda por:</h3>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <table class="table shadow-lg">
+                <th class="bg-principal table-head">
                     AUTOR
                 </th>
                 <tr>
@@ -81,8 +82,8 @@
                 </tr>
             </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <table class="table table-bordered shadow-lg">
                 <th class="bg-principal">
                     TAG
                 </th>
@@ -109,8 +110,8 @@
                 </tr>
             </table>
         </div>
-        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-            <table class="table table-bordered">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+            <table class="table table-bordered shadow-lg">
                 <th class="bg-principal">
                     FECHA
                 </th>
