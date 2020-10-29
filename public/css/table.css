@@ -22,7 +22,7 @@
     width: 1170px;
 }
 
-table {
+.search-table {
     border-spacing: 1px;
     border-collapse: collapse;
     background: #fff;
@@ -32,7 +32,7 @@ table {
     margin: 0 auto;
     position: relative;
 }
-table * {
+.search-table * {
     position: relative;
 }
 table td, table th {
@@ -40,7 +40,7 @@ table td, table th {
 }
 table thead tr {
     height: 60px;
-    background: #6c7ae0;
+    background: #1b3a6d;
 }
 table tbody tr {
     height: 50px;
@@ -75,7 +75,6 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr {
-    font-family: OpenSans-Regular;
     font-size: 15px;
     color: #808080;
     line-height: 1.2;
@@ -130,7 +129,7 @@ tbody tr:hover {
     }
     table tbody tr {
         height: auto;
-        padding: 37px 0;
+        padding: 0px 0;
     }
     table tbody tr td {
         padding-left: 40% !important;
@@ -140,8 +139,7 @@ tbody tr:hover {
         margin-bottom: 0;
     }
     table tbody tr td:before {
-        font-family: OpenSans-Regular;
-        font-size: 14px;
+        font-size: 15px;
         color: #999999;
         line-height: 1.2;
         font-weight: unset;
@@ -150,23 +148,14 @@ tbody tr:hover {
         left: 30px;
         top: 0;
     }
-    table tbody tr td:nth-child(1):before {
-        content: "Date";
+    .search-table tbody tr td:nth-child(1):before {
+        content: "Fecha";
     }
-    table tbody tr td:nth-child(2):before {
-        content: "Order ID";
+    .search-table tbody tr td:nth-child(2):before {
+        content: "Titulo";
     }
-    table tbody tr td:nth-child(3):before {
-        content: "Name";
-    }
-    table tbody tr td:nth-child(4):before {
-        content: "Price";
-    }
-    table tbody tr td:nth-child(5):before {
-        content: "Quantity";
-    }
-    table tbody tr td:nth-child(6):before {
-        content: "Total";
+    .search-table tbody tr td:nth-child(3):before {
+        content: "Autor";
     }
 
     .column4,
@@ -195,5 +184,7 @@ tbody tr:hover {
         padding-right: 15px;
     }
 }
-
-
+.table-head::before{
+    display: none;
+    font-size: 0px;
+}

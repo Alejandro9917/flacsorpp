@@ -44,13 +44,13 @@
             </div>
 
 
-            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 
                 <div class="limiter">
                     <div class="container-table100">
                         <div class="wrap-table100">
                             <div class="table100">
-                                <table class="shadow-lg table-hover">
+                                <table class="shadow-lg table-hover search-table">
                                     <thead>
                                     <tr class="table100-head">
                                         <th class="column1">Fecha de publicacion</th>
@@ -153,11 +153,10 @@
                 </div>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 m-5">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 m-1">
                 <h4 class="text-uppercase">
                     AUTOR >
                 </h4>
-                <div class="table-responsive-sm">
                     <table class="table table-bordered shadow-lg">
                         <tr>
                             <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
@@ -207,11 +206,7 @@
                             <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
                         </tr>
                     </table>
-                </div>
-
             </div>
-
-
         </div>
     </div>
 

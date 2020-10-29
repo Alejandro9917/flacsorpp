@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <h3 class="font-weight-bold mt-3 mb-3">Colecciones en esta comunidad</h3>
                 <table class="table table-bordered data-politicas">
                     <tr>
