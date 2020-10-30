@@ -9,7 +9,7 @@ class Permison extends Model
 {
     use HasFactory;
 
-    protected $table = 'permisos';
+    protected $table = 'permisons';
 
     protected $fillable = [
         'can_create', 'can_read', 'can update', 'can_delete',
@@ -18,11 +18,11 @@ class Permison extends Model
 
     //Relación con Modules
     public function module(){
-        return $this->belongsTo(Module::class, 'id', 'module_id');
+        return $this->belongsTo(Module::class, 'role_id', 'id');
     }
 
     //Relación con Roles
     public function role(){
-        return $this->belongsTo(Role::class, 'id', 'role_id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 }

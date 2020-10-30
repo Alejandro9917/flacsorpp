@@ -18,6 +18,6 @@ class Author extends Model
 
     //Relacion con file_autor
     public function files(){
-        return $this->belongsToMany(File::class, 'files_authors', 'author_id', 'file_id');
+        return $this->belongsToMany(File::class, 'file_authors', 'author_id', 'file_id');
     }
 }

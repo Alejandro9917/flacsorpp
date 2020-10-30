@@ -17,7 +17,7 @@ class File extends Model
 
     //Relación con Authors
     public function authors(){
-        return $this->belongsToMany(Author::class, 'files_authors', 'file_id', 'author_id');
+        return $this->belongsToMany(Author::class, 'file_authors', 'file_id', 'author_id');
     }
 
     //Relación con Citations

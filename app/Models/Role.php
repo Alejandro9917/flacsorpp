@@ -18,12 +18,12 @@ class Role extends Model
     //Relación con Permisons
     public function permisons()
     {
-        return $this->hasMany(Permison::class);
+        return $this->hasMany(Permison::class, 'id');
     }
 
     //Relación con Users
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class, 'id');
     }
 }

@@ -19,11 +19,11 @@ class CollectionVersion extends Model
 
     //Relación con Collectioons
     public function collection(){
-        return $this->belongsTo(Collection::class, 'id', 'collection_id');
+        return $this->belongsTo(Collection::class, 'collection_id', 'id');
     }
 
     //Relación con Users
     public function users(){
-        return $this->belongsTo(User::class, 'id', 'created_by');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

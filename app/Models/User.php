@@ -28,11 +28,11 @@ class User extends Authenticatable
 
     //Relación con Collection
     public function collections(){
-        return $this->hasMany(Collection::class);
+        return $this->hasMany(Collection::class, 'id');
     }
 
     //Relación con Files
     public function files(){
-        return $this->hasMany(File::class);
+        return $this->hasMany(File::class, 'id');
     }
 }

@@ -17,6 +17,6 @@ class Tag extends Model
 
     //Relación con Files
     public function files(){
-        return $this->belongsToMany(File::class, 'files_tags', 'tag_id', 'file_id');
+        return $this->belongsToMany(File::class, 'file_tags', 'tag_id', 'file_id');
     }
 }

@@ -17,6 +17,6 @@ class Citation extends Model
 
     //Relacion con files
     public function file(){
-        return $this->belongsTo(File::class, 'file_id', 'id');
+        return $this->belongsTo(File::class, 'id', 'file_id');
     }
 }
