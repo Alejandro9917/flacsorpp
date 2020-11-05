@@ -83,7 +83,7 @@ tbody tr {
 tbody tr:hover {
     color: #555555;
     background-color: #f5f5f5;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .column1 {

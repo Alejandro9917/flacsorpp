@@ -127,6 +127,7 @@ body {
 
 #nav{
     background-color: #243f5e !important;
+    width: 100%;
 }
 
 /*Apartado para dispositivos pequeños*/
@@ -180,6 +181,9 @@ body {
         text-align: left;
         color: #1b3a6d;
         padding: 7px;
+    }
+    nav #navbarSupportedContent li {
+        margin-top: 5px;
     }
 
     /*Estilos para la imagen del sitio que pertenece al navbar*/
@@ -295,6 +299,9 @@ body {
         font-size: 16px;
         color: white;
     }
+    #addressFooter{
+        color: black;
+    }
 }
 
 /*Apartado para dispositivos mediamos*/
@@ -327,6 +334,36 @@ body {
 }
 
 /*=======================================================FIN Estilos para el FOOTER==========================================================================*/
-/*======================================================= Estilos para el SEARCH==========================================================================*/
+/*======================================================= Estilos para el Login==========================================================================*/
 
-/*=======================================================FIN Estilos para el SEARCH==========================================================================*/
+.login-content{
+    border: 1px solid #1b3a6d;
+    margin-top: 100px;
+}
+.login-content form{
+    margin: 20px;
+}
+.login-content a{
+    margin: 20px;
+}
+.login-content .text-login {
+    background: #1b3a6d;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 200;
+}
+
+.login-content form .btn-login{
+    border-radius: 16px;
+    height: 40px;
+    width: 100px;
+}
+.login-content form .btn-login:hover{
+    background: #74afff;
+    color: #fff;
+    transition: all 0.5s;
+}
+.login-content .link-ayuda{
+    display: inline-block;
+}
+/*=======================================================FIN Estilos para el Login==========================================================================*/

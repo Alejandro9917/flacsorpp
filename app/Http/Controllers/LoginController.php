@@ -13,7 +13,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return 'Página de login';
+        return view('layout.login');
     }
 
     /**
