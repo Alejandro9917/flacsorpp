@@ -10,6 +10,10 @@ use App\Http\Controllers\MetadataController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 
+//Nuevas controladores
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\TagController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,3 +49,5 @@ Route::get('/search', [SearchController::class, 'index']);
 Route::get('/login', [UserController::class, 'login']);
 
 //Rutas privadas
+Route::get('/author', [AuthorController::class, 'index']);
+Route::resource('/tag', TagController::class);
