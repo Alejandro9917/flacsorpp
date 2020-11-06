@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\File;
 
 class FileController extends Controller
 {
@@ -13,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+        return File::get();
     }
 
     /**
@@ -23,7 +24,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        $files = File::get();
     }
 
     /**
@@ -34,7 +35,17 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validating recived data
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'type' => 'required|max:255',
+            'status' => 'required|max:255',
+            'created_by' => 'user_id',
+            'collection_id' => 'collection_id'
+        ]);
+
+        //Final object with data
+        $file = File::create($data);
     }
 
     /**
@@ -68,7 +79,16 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validating recived data
+        $data = $request->validate([
+            'name' => 'required|max:255',
+            'type' => 'required|max:255',
+            'status' => 'required|max:255',
+            'created_by' => 'user_id',
+            'collection_id' => 'collection_id'
+        ]);
+
+        $file = File::where(['id' => $id])->update($data);
     }
 
     /**

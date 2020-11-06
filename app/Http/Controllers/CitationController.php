@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tag;
+use App\Models\Citation;
 
-class TagController extends Controller
+class CitationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        return Tag::get();
+        return Citation::get();
     }
 
     /**
@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tags = Tag::get();
+        $citations = Citation::get();
     }
 
     /**
@@ -35,17 +35,17 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating received data
-        $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
+        //Validating recived data
+        $data = $request->validation([
+            'content' => 'required|max:255',
+            'title' => 'required|max:255',
+            'pointer' => 'required|max:255',
+            'reference' => 'required|max:255',
+            'file_id' => 'required'
         ]);
 
         //Final object with data
-        $tag = Tag::create($data);
-
-        //Returning the view with success messages
+        $citation = Citation::create($data);
     }
 
     /**
@@ -79,15 +79,16 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating received data
-        $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
+        //Validating recived data
+        $data = $request->validation([
+            'content' => 'required|max:255',
+            'title' => 'required|max:255',
+            'pointer' => 'required|max:255',
+            'reference' => 'required|max:255',
+            'file_id' => 'required'
         ]);
 
-        //Final object with data
-        $tag = Tag::where(['id' => $id])->update($data);
+        $citation = Citation::where(['id' => $id])->update($data);
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Tag;
+use App\Models\Collection;
 
-class TagController extends Controller
+class CollectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        return Tag::get();
+        return Collection::get();
     }
 
     /**
@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tags = Tag::get();
+        $collections = Collection::get();
     }
 
     /**
@@ -35,17 +35,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating received data
+        //Validating recived data
         $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255',
+            'priority' => 'required|max:255',
+            'is_folder' => 'required|boolean',
+            'is_public' => 'required|boolean',
+            'status' => 'boolean',
+            'created_by' => 'required',
+            'collection_id' => 'required'
         ]);
 
         //Final object with data
-        $tag = Tag::create($data);
-
-        //Returning the view with success messages
+        $collection = Collection::create($data);
     }
 
     /**
@@ -79,15 +82,19 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating received data
+        //Validating recived data
         $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255',
+            'priority' => 'required|max:255',
+            'is_folder' => 'required|boolean',
+            'is_public' => 'required|boolean',
+            'status' => 'boolean',
+            'created_by' => 'required',
+            'collection_id' => 'required'
         ]);
 
-        //Final object with data
-        $tag = Tag::where(['id' => $id])->update($data);
+        $collection = Collection::where(['id' => $id])->update($data);
     }
 
     /**

@@ -24,7 +24,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $auhtor = Author::get();
     }
 
     /**
@@ -35,7 +35,18 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validating recived data
+        $data = $request->validate([
+            'first_name' => 'required|max:255',
+            'second_name' => 'required|max:255',
+            'first_lastname' => 'required|max:255',
+            'second_lastname' => 'required|max:255',
+            'birthday' => 'required|date',
+            'email' => 'required|email|max:255'
+        ]);
+
+        //Final object with data
+        $author = Auhtor::create($data);
     }
 
     /**
@@ -69,7 +80,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validating recived data
+        $data = $request->validate([
+            'first_name' => 'required|max:255',
+            'second_name' => 'required|max:255',
+            'first_lastname' => 'required|max:255',
+            'second_lastname' => 'required|max:255',
+            'birthday' => 'required|date',
+            'email' => 'required|email|max:255'
+        ]);
+
+        $author = Author::where(['id' => $id])->update($data);
     }
 
     /**

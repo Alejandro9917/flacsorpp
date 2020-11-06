@@ -12,6 +12,9 @@ use App\Http\Controllers\UserController;
 
 //Nuevas controladores
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CitationController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\TagController;
 
 /*
@@ -48,6 +51,28 @@ Route::get('/search', [SearchController::class, 'index']);
 //Rutas para el componente de usuario
 Route::get('/login', [UserController::class, 'login']);
 
-//Rutas privadas
-Route::get('/author', [AuthorController::class, 'index']);
-Route::resource('/tag', TagController::class);
+//Private route
+//Route for author controller 
+Route::resource('/author', AuthorController::class)->except([
+    'show', 'edit'
+]);
+
+//Route for citation controller
+Route::resource('/citation', CitationController::class)->except([
+    'show', 'edit'
+]);
+
+//Route for collection controller
+Route::resource('/collection', CollectionController::class)->except([
+    'show', 'edit'
+]);
+
+//Route for file controller
+Route::resource('/file', FileController::class)->except([
+    'show', 'edit'
+]);
+
+//Route for tag controller
+Route::resource('/tag', TagController::class)->except([
+    'show', 'edit'
+]);
