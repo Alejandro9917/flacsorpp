@@ -14,7 +14,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CitationController;
 use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\FileController;
 use App\Http\Controllers\TagController;
 
 /*
