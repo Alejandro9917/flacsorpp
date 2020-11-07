@@ -1,6 +1,6 @@
-@extends('partials.app')
+@extends('partials.master')
 
-@section('content')
+@section('public-content')
 
 
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

@@ -1,12 +1,12 @@
-@section('content')
+@extends('partials.master')
 
-    @extends('partials.app')
+@section('public-content')
 
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10 ">
 
-                <form >
+                <form>
                     <div class="form-group form-inline">
                         <label class="col-xs-2 control-label font-weight-bold">Buscando dentro de la comunidad: </label>
                         <div class="col-xs-10">
@@ -157,55 +157,56 @@
                 <h4 class="text-uppercase">
                     AUTOR >
                 </h4>
-                    <table class="table table-bordered shadow-lg">
-                        <tr>
-                            <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                    </table>
+                <table class="table table-bordered shadow-lg">
+                    <tr>
+                        <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                </table>
 
-                    <h4 class="text-uppercase">
-                        TAG >
-                    </h4>
-                    <table class="table table-bordered shadow-lg">
-                        <tr>
-                            <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                        </tr>
-                    </table>
-                    <h4 class="text-uppercase">
-                        FECHA >
-                    </h4>
-                    <table class="table table-bordered shadow-lg">
-                        <tr>
-                            <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                        </tr>
-                        <tr>
-                            <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                        </tr>
-                    </table>
+                <h4 class="text-uppercase">
+                    TAG >
+                </h4>
+                <table class="table table-bordered shadow-lg">
+                    <tr>
+                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
+                    </tr>
+                </table>
+                <h4 class="text-uppercase">
+                    FECHA >
+                </h4>
+                <table class="table table-bordered shadow-lg">
+                    <tr>
+                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
+                    </tr>
+                    <tr>
+                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
+                    </tr>
+                </table>
+
             </div>
         </div>
     </div>

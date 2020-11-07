@@ -13,13 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    //Función para mostrar el login
-    public function login()
-    {
-        return 'Página de login';
+        return view('layout.login');
     }
 
     /**

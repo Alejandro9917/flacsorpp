@@ -1,6 +1,6 @@
-@section('content')
+@extends('partials.master')
 
-    @extends('partials.app')
+@section('public-content')
 
     <div class="container">
         <div class="row">
