@@ -49,7 +49,7 @@ Route::get('/metadata', [MetadataController::class, 'index']);
 //Rutas para el componente de búsqueda
 Route::get('/search', [SearchController::class, 'index']);
 
-//Rutas para el componente de usuario
+//Rutas para el componente de login
 Route::get('/login', [UserController::class, 'login']);
 
 //Private route
