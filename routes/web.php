@@ -53,5 +53,6 @@ Route::get('/login', [UserController::class, 'login']);
 //Roles routes
 Route::resource('role', RoleController::class);
 Route::resource('module', ModuleController::class);
+Route::resource('user', ModuleController::class);
 Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
 Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
