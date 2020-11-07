@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MetadataController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +46,12 @@ Route::get('/search', [SearchController::class, 'index']);
 //Rutas para el componente de usuario
 Route::get('/login', [UserController::class, 'login']);
 
+
 //Rutas privadas
+
+
+//Roles routes
+Route::resource('role', RoleController::class);
+Route::resource('module', ModuleController::class);
+Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
+Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
