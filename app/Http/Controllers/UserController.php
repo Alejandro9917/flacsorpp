@@ -16,7 +16,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('layout.login');
         $all_user = User::all();
         return view('user.user')->with(
             array(
@@ -28,7 +27,7 @@ class UserController extends Controller
     //Función para mostrar el login
     public function login()
     {
-        return 'Página de login';
+        return view('layout.login');
     }
 
     /**
