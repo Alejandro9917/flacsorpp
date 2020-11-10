@@ -12,11 +12,11 @@
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="/home">Repositorio</a>
+            <li>
+                <a href="#">Repositorio</a>
             </li>
             <li>
-                <a href="/community">Comunidades</a>
+                <a href="#">Comunidades</a>
             </li>
             <li>
                 <a href="#">Colecciones</a>
@@ -28,13 +28,13 @@
                 <a href="#">Datos</a>
             </li>
             <li>
-                <a href="#">Autores</a>
+                <a href="autor">Autores</a>
             </li>
             <li>
-                <a href="#">Citaciones</a>
+                <a href="/citaciones">Citaciones</a>
             </li>
             <li>
-                <a href="#">Tags</a>
+                <a href="tags">Tags</a>
             </li>
             <li>
                 <a href="#">Usuarios</a>
