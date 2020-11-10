@@ -3,118 +3,122 @@ html {
     min-height: 100%;
     position: relative;
 }
+
 body {
     margin: 0;
 }
-.bg-principal{
+
+.bg-principal {
     background: #243f5e;
     color: #fff;
 }
-.bg-second{
+
+.bg-second {
     background: #6c7ae0 !important;
     color: #fff;
 }
+
 /*FIN Estilos generales*/
 
 
 /*=======================================================Estilos para el HOME==========================================================================*/
 
 /*Estilos para el modulo de carrusel en principal*/
-#carouselExampleIndicators{
+#carouselExampleIndicators {
     background-color: #243f5e;
     color: white;
 }
 
-.carouselItem a{
+.carouselItem a {
     position: fixed;
 }
 
 
 /*Estilos para el carrousel*/
 /*Apartado para dispositivos pequeños*/
-@media (max-width: 767.98px){
+@media (max-width: 767.98px) {
     /*Estilos para los elementos en el carrusel*/
-    .carouselItem{
+    .carouselItem {
         margin-bottom: 10vw;
     }
 
     /*Estilos para el texto dentro del boton*/
-    .textButtonCarousel{
+    .textButtonCarousel {
         font-size: 10px;
     }
 
     /*Estilos para colocar texto por encima de las tarjetas*/
-    .superTextPricipal{
+    .superTextPricipal {
         font-size: 10.5px;
     }
 }
 
 /*Apartado para dispositivos mediamos*/
-@media (min-width: 768px) and (max-width: 991.98px){
+@media (min-width: 768px) and (max-width: 991.98px) {
     /*Estilos para los elementos en el carrusel*/
-    .carouselItem{
+    .carouselItem {
         margin-top: 12px;
         margin-bottom: 5vw;
     }
 
     /*Estilos para el texto dentro del boton*/
-    .textButtonCarousel{
+    .textButtonCarousel {
         font-size: 14px;
         margin-left: 6vw;
     }
 
     /*Estilos para colocar texto por encima de las tarjetas*/
-    .superTextPricipal{
+    .superTextPricipal {
         font-size: 12px;
     }
 }
 
 /*Apartado para dispositivos grandes*/
-@media (min-width: 992px) and (max-width: 1199.98px){
+@media (min-width: 992px) and (max-width: 1199.98px) {
     /*Estilos para los links en el componente de investigacion*/
-    .linkTextPrincipal{
+    .linkTextPrincipal {
         font-size: 17px;
     }
 
     /*Estilos para los elementos en el carrusel*/
-    .carouselItem{
+    .carouselItem {
         margin-top: 12px;
         margin-bottom: 5vw;
     }
 
     /*Estilos para el texto dentro del boton*/
-    .textButtonCarousel{
+    .textButtonCarousel {
         font-size: 14px;
         margin-left: 7vw;
     }
 
     /*Estilos para colocar texto por encima de las tarjetas*/
-    .superTextPricipal{
+    .superTextPricipal {
         font-size: 12px;
     }
 }
 
 /*Apartado para dispositivos xl*/
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
     /*Estilos para los links en el componente de investigacion*/
-    .linkTextPrincipal{
+    .linkTextPrincipal {
         font-size: 17px;
     }
 
     /*Estilos para los elementos en el carrusel*/
-    .carouselItem{
+    .carouselItem {
         margin-top: 12px;
         margin-bottom: 5vw;
     }
 
     /*Estilos para el texto dentro del boton*/
-    .textButtonCarousel{
+    .textButtonCarousel {
         font-size: 14px;
         margin-left: 6.5vw;
     }
 
     /*Estilos para colocar texto por encima de las tarjetas*/
-    .superTextPricipal{
+    .superTextPricipal {
         font-size: 11.5px;
     }
 }
@@ -125,58 +129,58 @@ body {
 
 /*=======================================================Estilos para el NAVBAR==========================================================================*/
 
-#nav{
+#nav {
     background-color: #243f5e !important;
     width: 100%;
 }
 
 /*Apartado para dispositivos pequeños*/
-@media (max-width: 767.98px){
+@media (max-width: 767.98px) {
     /*Estilos para el titulo del sitio que pertenece al navbar*/
-    #titleNav{
+    #titleNav {
         font-size: 14px;
         color: #1b3a6d;
         text-align: left;
     }
 
     /*Estilos para la imagen del sitio que pertenece al navbar*/
-    #imgLogoNav{
+    #imgLogoNav {
         width: 42px;
         height: 66px;
     }
 
     /*Estilos para posicionar el boton en el navbar*/
-    #toogleBoton{
+    #toogleBoton {
         margin-top: 15px;
     }
 }
 
 /*Apartado para dispositivos mediamos*/
-@media (min-width: 768px) and (max-width: 991.98px){
+@media (min-width: 768px) and (max-width: 991.98px) {
     /*Estilos para el titulo del sitio que pertenece al navbar*/
-    #titleNav{
+    #titleNav {
         font-size: 24px;
         text-align: left;
         color: #1b3a6d;
     }
 
     /*Estilos para la imagen del sitio que pertenece al navbar*/
-    #imgLogoNav{
+    #imgLogoNav {
         float: left;
         width: 54px;
         height: 86px;
     }
 
     /*Estilos para posicionar el boton en el navbar*/
-    #toogleBoton{
+    #toogleBoton {
         margin-top: 15px;
     }
 }
 
 /*Apartado para dispositivos grandes*/
-@media (min-width: 992px) and (max-width: 1199.98px){
+@media (min-width: 992px) and (max-width: 1199.98px) {
     /*Estilos para el titulo del sitio que pertenece al navbar*/
-    #titleNav{
+    #titleNav {
         font-size: 24px;
         text-align: left;
         color: #1b3a6d;
@@ -186,37 +190,41 @@ body {
         margin-top: 5px;
     }
 
+    nav #navbarSupportedContent li {
+        margin-top: 5px;
+    }
+
     /*Estilos para la imagen del sitio que pertenece al navbar*/
-    #imgLogoNav{
+    #imgLogoNav {
         float: left;
         width: 60px;
         height: 92px;
     }
 
     /*Estilos para los links principales en el navbar*/
-    .linkTextNav{
+    .linkTextNav {
         color: #1b3a6d !important;
     }
 
-    #nav{
+    #nav {
         background-color: #1b3a6d !important;
     }
 
     /*Estilos para los menus despegables*/
-    .listBackNav{
+    .listBackNav {
         background-color: #1b3a6d;
     }
 
     /*Estilos para los links en los menus despegables*/
-    .listTextNav{
+    .listTextNav {
         color: white;
     }
 }
 
 /*Apartado para dispositivos xl*/
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
     /*Estilos para el titulo del sitio que pertenece al navbar*/
-    #titleNav{
+    #titleNav {
         float: left;
         font-size: 18px;
         text-align: left;
@@ -224,28 +232,28 @@ body {
     }
 
     /*Estilos para la imagen del sitio que pertenece al navbar*/
-    #imgLogoNav{
+    #imgLogoNav {
         float: left;
         width: 64px;
         height: 96px;
     }
 
-    #nav{
+    #nav {
         background-color: #1b3a6d !important;
     }
 
     /*Estilos para los links principales en el navbar*/
-    .linkTextNav{
+    .linkTextNav {
         color: #1b3a6d !important;
     }
 
     /*Estilos para los menus despegables*/
-    .listBackNav{
+    .listBackNav {
         background-color: #1b3a6d;
     }
 
     /*Estilos para los links en los menus despegables*/
-    .listTextNav{
+    .listTextNav {
         color: white;
     }
 }
@@ -253,7 +261,7 @@ body {
 /*=======================================================FIN Estilos para el NAVBAR==========================================================================*/
 
 /*=======================================================Estilos para el FOOTER==========================================================================*/
-#footer{
+#footer {
     background-color: #243f5e;
     bottom: 0 !important;
     position: relative;
@@ -263,72 +271,74 @@ body {
 }
 
 /*Clase para poner iconos blancos*/
-.iconWhite{
+.iconWhite {
     color: white;
 }
 
 /*Clae para poner iconos azules*/
-.iconBlue{
+.iconBlue {
     color: #1b3a6d;
     margin-bottom: 5px;
 }
 
-.phone-i{
+.phone-i {
     transform: rotate(90deg);
 }
+
 /*Estilos para los derechos en el footer*/
-#titleCopy{
+#titleCopy {
     color: white;
 }
 
 /*Estilo para la dirección en el footer*/
-#addressFooter{
+#addressFooter {
     color: white;
 }
 
 /*Estilos para los iconos en el footer*/
-.iconCopy{
+.iconCopy {
     color: white;
     font-size: 40px;
 }
 
 /*Apartado para dispositivos pequeños*/
-@media (max-width: 767.98px){
+@media (max-width: 767.98px) {
     /*Titulo del footer*/
-    #titleFooter{
+    #titleFooter {
         font-size: 16px;
         color: white;
     }
-    #addressFooter{
+
+    #addressFooter {
         color: black;
     }
 }
 
 /*Apartado para dispositivos mediamos*/
-@media (min-width: 768px) and (max-width: 991.98px){
+@media (min-width: 768px) and (max-width: 991.98px) {
     /*Titulo del footer*/
-    #titleFooter{
+    #titleFooter {
         color: white;
     }
 }
 
 /*Apartado para dispositivos grandes*/
-@media (min-width: 992px) and (max-width: 1199.98px){
+@media (min-width: 992px) and (max-width: 1199.98px) {
     /*Titulo del footer*/
-    #titleFooter{
+    #titleFooter {
         color: white;
     }
 
-    #contentFooter{
+    #contentFooter {
         width: 80vw;
         margin-left: 10vw;
     }
 }
 
 /*Apartado para dispositivos xl*/
-@media (min-width: 1200px){
+@media (min-width: 1200px) {
     /*Titulo del footer*/
-    #titleFooter{
+    #titleFooter {
         color: white;
     }
 }
@@ -336,16 +346,19 @@ body {
 /*=======================================================FIN Estilos para el FOOTER==========================================================================*/
 /*======================================================= Estilos para el Login==========================================================================*/
 
-.login-content{
+.login-content {
     border: 1px solid #1b3a6d;
     margin-top: 100px;
 }
-.login-content form{
+
+.login-content form {
     margin: 20px;
 }
-.login-content a{
+
+.login-content a {
     margin: 20px;
 }
+
 .login-content .text-login {
     background: #1b3a6d;
     color: #fff;
@@ -353,17 +366,54 @@ body {
     font-weight: 200;
 }
 
-.login-content form .btn-login{
+.login-content form .btn-login {
     border-radius: 16px;
     height: 40px;
     width: 100px;
 }
-.login-content form .btn-login:hover{
+
+.login-content form .btn-login:hover {
     background: #74afff;
     color: #fff;
     transition: all 0.5s;
 }
-.login-content .link-ayuda{
+
+.login-content .link-ayuda {
     display: inline-block;
 }
+
 /*=======================================================FIN Estilos para el Login==========================================================================*/
+
+/*=======================================================Estilos para el Tag==========================================================================*/
+
+
+/*Apartado para dispositivos pequeños*/
+@media (max-width: 767.98px) {
+    /*Boton de busqueda*/
+    .btn-tags {
+        margin-top: 5px;
+    }
+}
+/*Apartado para dispositivos mediamos*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /*Boton de busqueda*/
+    .btn-tags {
+        margin-top: 5px;
+    }
+}
+
+/*Apartado para dispositivos grandes*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    caption{
+        display: none;
+    }
+}
+
+/*Apartado para dispositivos xl*/
+@media (min-width: 1200px) {
+    caption{
+        display: none;
+    }
+}
+
+/*=======================================================FIN Estilos para el Tag==========================================================================*/

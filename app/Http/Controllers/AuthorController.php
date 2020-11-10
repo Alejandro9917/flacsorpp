@@ -24,7 +24,8 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        $auhtor = Author::get();
+        // Retornando la vista index de Autores
+        return view('autores.index');
     }
 
     /**

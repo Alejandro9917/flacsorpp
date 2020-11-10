@@ -24,7 +24,8 @@ class CitationController extends Controller
      */
     public function create()
     {
-        $citations = Citation::get();
+        // Retornando la vista Idndex del recurso de citaciones
+        return view('citaciones.index');
     }
 
     /**

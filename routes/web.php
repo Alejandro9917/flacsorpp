@@ -3,20 +3,18 @@
 use Illuminate\Support\Facades\Route;
 
 //Agregando las nuevas rutas
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CitationController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MetadataController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ModuleController;
-
-//Nuevas controladores
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CitationController;
-use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,27 +53,27 @@ Route::get('/login', [UserController::class, 'login']);
 //Private route
 //Route for author controller 
 Route::resource('/author', AuthorController::class)->except([
-    'show', 'edit'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for citation controller
 Route::resource('/citation', CitationController::class)->except([
-    'show', 'edit'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for collection controller
 Route::resource('/collection', CollectionController::class)->except([
-    'show', 'edit'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
-    'show', 'edit'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
-    'show', 'edit'
+    'show', 'edit', 'destroy'
 ]);
 
 //Roles routes

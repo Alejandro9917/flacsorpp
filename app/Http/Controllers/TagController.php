@@ -24,7 +24,8 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tags = Tag::get();
+        // Retornando la vista index
+        return view('tags.index');
     }
 
     /**

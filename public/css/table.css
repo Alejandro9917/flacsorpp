@@ -40,6 +40,8 @@ table td, table th {
 }
 table thead tr {
     height: 60px;
+}
+.bg-table{
     background: #1b3a6d;
 }
 table tbody tr {

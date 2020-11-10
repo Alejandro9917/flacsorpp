@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <label class="col-xs-2 control-label font-weight-bold">Por:</label>
+                        <label class="col-xs-2 control-label font-weight-bold mr-3">Por: </label>
                         <div class="col-xs-3">
                             <input type="search" class="form-control input-xs" placeholder="Buscar...">
                         </div>
@@ -51,7 +51,7 @@
                         <div class="wrap-table100">
                             <div class="table100">
                                 <table class="shadow-lg table-hover search-table">
-                                    <thead>
+                                    <thead class="bg-table">
                                     <tr class="table100-head">
                                         <th class="column1">Fecha de publicacion</th>
                                         <th class="column2">Titulo/Nombre</th>
