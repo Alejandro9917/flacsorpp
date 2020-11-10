@@ -1,37 +1,87 @@
-<nav class="navbar navbar-expand-lg" id="nav">
 
-    <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-sliders-h"></i>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+{{--De esta forma se incluyen archivos de estilos personalizados para cada vista sin afectar el resto--}}
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header text-center">
+            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg" class="img-circle mt-1">
+            <h5 class="mt-3">User Name</h5>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="{{ setActive('home.index') }}">
+                <a href="/home">Repositorio</a>
+            </li>
+            <li class="{{ setActive('community.index') }}">
+                <a href="/community">Comunidades</a>
+            </li>
+            <li>
+                <a href="#">Colecciones</a>
+            </li>
+            <li>
+                <a href="#">Documentos</a>
+            </li>
+            <li>
+                <a href="#">Datos</a>
+            </li>
+            <li class="{{ setActive('autor.index') }}">
+                <a href="autor">Autores</a>
+            </li>
+            <li class="{{ setActive('citaciones.index') }}">
+                <a href="/citaciones">Citaciones</a>
+            </li>
+            <li class="{{ setActive('tags.index') }}">
+                <a href="tags">Tags</a>
+            </li>
+            <li>
+                <a href="#">Usuarios</a>
+            </li>
+            <li>
+                <a href="#">Permisos</a>
+            </li>
+            <li>
+                <a href="#">Roles</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
-                <li class="fas fa-users"></li>
-                Usuarios
-            </button>
-        </form>
-    </div>
-</nav>
+    </nav>
 
+    <!-- Page Content  -->
+    <div id="content">
 
-<div class="container mt-3 mb-3">
-    <div class="row">
+        <nav class="navbar navbar-expand-lg bg-transparent" id="nav-private">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                </button>
+            </div>
+        </nav>
 
-
-        <div class="col-2 col-md-2 col-xl-1">
-            <a href="/"><img src={{asset('img/logo.png')}} id="imgLogoNav" alt="Logo FLACSO"/></a>
-        </div>
-
-        <div class="col-7 col-sm-7 col-lg-9 col-xl-4 ml-5" id="titleNav">
-            <p>Facultad Latinoamericana <br>de de Ciencias Sociales <br>FLACSO El Salvador</p>
-        </div>
+        <main class="py-4">
+            @yield('content')
+        </main>
 
     </div>
 </div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>

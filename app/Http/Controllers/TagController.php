@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('layout.login');
+        // Retornando la vista index
+        return view('tags.index');
     }
 
     /**
