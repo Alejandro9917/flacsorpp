@@ -73,7 +73,7 @@ Route::resource('/file', FileController::class)->except([
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
-    'show', 'edit', 'destroy'
+    'edit', 'destroy'
 ]);
 
 //Roles routes

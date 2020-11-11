@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        return Tag::get();
+        return response()->json(Tag::get());
     }
 
     /**
@@ -36,17 +36,23 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating received data
-        $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
-        ]);
+        try{
+            //Validating received data
+            $data = $request->validate([
+                'cod_tag' => 'required|alpha_num|max:250',
+                'name' => 'required|alpha_num|max:250',
+                'color' => 'required|alpha_num|max:250'
+            ]);
 
-        //Final object with data
-        $tag = Tag::create($data);
+            //Final object with data
+            $tag = Tag::create($data);
+            return response()->json($tag);
+        }
 
-        //Returning the view with success messages
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**
@@ -57,7 +63,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Tag::where(['id' => $id])->get());
     }
 
     /**
