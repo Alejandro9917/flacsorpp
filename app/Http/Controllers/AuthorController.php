@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\File;
+use App\Models\Author;
 
-class FileController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        return File::get();
+        return Author::get();
     }
 
     /**
@@ -24,36 +24,36 @@ class FileController extends Controller
      */
     public function create()
     {
-//        $files = File::get();
-        //Mostrando la vista de index de files
-        return view('files.index');
+        // Retornando la vista index de Autores
+        return view('autores.index');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //Validating recived data
         $data = $request->validate([
-            'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
+            'first_name' => 'required|max:255',
+            'second_name' => 'required|max:255',
+            'first_lastname' => 'required|max:255',
+            'second_lastname' => 'required|max:255',
+            'birthday' => 'required|date',
+            'email' => 'required|email|max:255'
         ]);
 
         //Final object with data
-        $file = File::create($data);
+        $author = Auhtor::create($data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +64,7 @@ class FileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,28 +75,29 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //Validating recived data
         $data = $request->validate([
-            'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
+            'first_name' => 'required|max:255',
+            'second_name' => 'required|max:255',
+            'first_lastname' => 'required|max:255',
+            'second_lastname' => 'required|max:255',
+            'birthday' => 'required|date',
+            'email' => 'required|email|max:255'
         ]);
 
-        $file = File::where(['id' => $id])->update($data);
+        $author = Author::where(['id' => $id])->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

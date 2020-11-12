@@ -17,7 +17,7 @@ class CreatePermisonsTable extends Migration
             $table->id();
             $table->boolean('can_create');
             $table->boolean('can_read');
-            $table->boolean('can update');
+            $table->boolean('can_update');
             $table->boolean('can_delete');
             $table->boolean('can_upload');
             $table->boolean('can_download');

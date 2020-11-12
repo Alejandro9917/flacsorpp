@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Citation;
 
-class LoginController extends Controller
+class CitationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return 'Página de login';
+        return Citation::get();
     }
 
     /**
@@ -23,7 +24,8 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        // Retornando la vista Idndex del recurso de citaciones
+        return view('citaciones.index');
     }
 
     /**
@@ -34,7 +36,17 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validating recived data
+        $data = $request->validation([
+            'content' => 'required|max:255',
+            'title' => 'required|max:255',
+            'pointer' => 'required|max:255',
+            'reference' => 'required|max:255',
+            'file_id' => 'required'
+        ]);
+
+        //Final object with data
+        $citation = Citation::create($data);
     }
 
     /**
@@ -68,7 +80,16 @@ class LoginController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validating recived data
+        $data = $request->validation([
+            'content' => 'required|max:255',
+            'title' => 'required|max:255',
+            'pointer' => 'required|max:255',
+            'reference' => 'required|max:255',
+            'file_id' => 'required'
+        ]);
+
+        $citation = Citation::where(['id' => $id])->update($data);
     }
 
     /**

@@ -11,33 +11,28 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password',
+        'firts_name', 'second_name', 'first_lastname',
+        'second_lastname', 'birthday', 'status', 'role_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relación con Collection
+    public function collections(){
+        return $this->hasMany(Collection::class, 'id');
+    }
+
+    //Relación con Files
+    public function files(){
+        return $this->hasMany(File::class, 'id');
+    }
 }

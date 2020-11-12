@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollectionsTable extends Migration
+class CreateCollectionVersionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('collection_versions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('slug');
-            $table->string('priority');
-            $table->boolean('is_folder');
-            $table->boolean('is_public');
+            $table->string('version_number');
+            $table->string('description');
+            $table->string('json_changes');
             $table->boolean('status');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('collection_id')->constrained();
-            $table->datetime('published_at');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('collection_versions');
     }
 }

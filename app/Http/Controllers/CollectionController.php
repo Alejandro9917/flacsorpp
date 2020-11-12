@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\File;
+use App\Models\Collection;
 
-class FileController extends Controller
+class CollectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        return File::get();
+        return Collection::get();
     }
 
     /**
@@ -24,15 +24,13 @@ class FileController extends Controller
      */
     public function create()
     {
-//        $files = File::get();
-        //Mostrando la vista de index de files
-        return view('files.index');
+        $collections = Collection::get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,20 +38,23 @@ class FileController extends Controller
         //Validating recived data
         $data = $request->validate([
             'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
+            'slug' => 'required|max:255',
+            'priority' => 'required|max:255',
+            'is_folder' => 'required|boolean',
+            'is_public' => 'required|boolean',
+            'status' => 'boolean',
+            'created_by' => 'required',
+            'collection_id' => 'required'
         ]);
 
         //Final object with data
-        $file = File::create($data);
+        $collection = Collection::create($data);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -64,7 +65,7 @@ class FileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -75,8 +76,8 @@ class FileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -84,19 +85,22 @@ class FileController extends Controller
         //Validating recived data
         $data = $request->validate([
             'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
+            'slug' => 'required|max:255',
+            'priority' => 'required|max:255',
+            'is_folder' => 'required|boolean',
+            'is_public' => 'required|boolean',
+            'status' => 'boolean',
+            'created_by' => 'required',
+            'collection_id' => 'required'
         ]);
 
-        $file = File::where(['id' => $id])->update($data);
+        $collection = Collection::where(['id' => $id])->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

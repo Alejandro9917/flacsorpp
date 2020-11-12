@@ -40,6 +40,8 @@ table td, table th {
 }
 table thead tr {
     height: 60px;
+}
+.bg-table{
     background: #1b3a6d;
 }
 table tbody tr {
@@ -63,6 +65,7 @@ table td.r, table th.r {
 
 
 .table100-head th{
+    font-family: OpenSans-Regular;
     font-size: 18px;
     color: #fff;
     line-height: 1.2;
@@ -83,7 +86,7 @@ tbody tr {
 tbody tr:hover {
     color: #555555;
     background-color: #f5f5f5;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .column1 {
