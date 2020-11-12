@@ -13,7 +13,11 @@
 
            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
                <div class="table-responsive-md ">
+<<<<<<< HEAD
                    <table id="table_tag" class="table bg-success table-active table-hover">
+=======
+                   <table class="table bg-success table-active table-hover">
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
                        <caption>List of Tags</caption>
                        <thead>
                        <tr>
@@ -26,6 +30,39 @@
                        </tr>
                        </thead>
                        <tbody class="bg-light">
+<<<<<<< HEAD
+=======
+                       <tr>
+                           <th scope="row">1</th>
+                           <td>943</td>
+                           <td>Test</td>
+                           <td>Red</td>
+                           <td>2020-12-12 at 3:40 am</td>
+                           <td>
+                               <button type="submit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</button>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th scope="row">2</th>
+                           <td>690</td>
+                           <td>See a movie</td>
+                           <td>Whithe</td>
+                           <td>2020-12-12 at 3:40 am</td>
+                           <td>
+                               <button type="submit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</button>
+                           </td>
+                       </tr>
+                       <tr>
+                           <th scope="row">3</th>
+                           <td>412</td>
+                           <td>Reading</td>
+                           <td>Orange</td>
+                           <td>2020-12-12 at 3:40 am</td>
+                           <td>
+                               <button type="submit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</button>
+                           </td>
+                       </tr>
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
                        </tbody>
                    </table>
                </div>
@@ -34,6 +71,7 @@
        </div>
 
    </div>
+<<<<<<< HEAD
 
     <script type="text/javascript">
         //Evento cuando termine de cargar la página
@@ -133,6 +171,8 @@
             });
         }
     </script>
+=======
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 @endsection
 
 
@@ -149,8 +189,12 @@
                 </button>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD
                 <form id="form_tag" action="" method="POST">
                     {{ csrf_field() }}
+=======
+                <form action="" method="POST">
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
                     <div class="form-group">
                         <label for="cod_tag">Codigo</label>
                         <input class="form-control" type="number" name="cod_tag" id="cod_tag" min="0" value="0">
@@ -166,7 +210,11 @@
                         <input class="form-control" type="text" name="color" id="color" placeholder="Color del tag">
                     </div>
 
+<<<<<<< HEAD
                     <a type="submit" id="send" class="btn btn-success float-right"><i class="fas fa-cloud-upload-alt"></i> Guardar</a>
+=======
+                    <button type="submit" class="btn btn-success float-right"><i class="fas fa-cloud-upload-alt"></i> Guardar</button>
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
                 </form>
             </div>
             <div class="modal-footer">
@@ -175,6 +223,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 
 <!-- Modal de update -->
 <div class="modal fade shadow-sm" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateTitle" aria-hidden="true">
@@ -213,3 +262,5 @@
         </div>
     </div>
 </div>
+=======
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3

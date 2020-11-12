@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Citation;
 
-class CitationController extends Controller
+class AutorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,8 @@ class CitationController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD:app/Http/Controllers/CitationController.php
-        return Citation::get();
-=======
-        return view('layout.login');
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3:app/Http/Controllers/LoginController.php
+        // Retornando la vista index de Autores
+        return view('autores.index');
     }
 
     /**
@@ -28,8 +24,7 @@ class CitationController extends Controller
      */
     public function create()
     {
-        // Retornando la vista Idndex del recurso de citaciones
-        return view('citaciones.index');
+        //
     }
 
     /**
@@ -40,17 +35,7 @@ class CitationController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating recived data
-        $data = $request->validation([
-            'content' => 'required|max:255',
-            'title' => 'required|max:255',
-            'pointer' => 'required|max:255',
-            'reference' => 'required|max:255',
-            'file_id' => 'required'
-        ]);
-
-        //Final object with data
-        $citation = Citation::create($data);
+        //
     }
 
     /**
@@ -84,16 +69,7 @@ class CitationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating recived data
-        $data = $request->validation([
-            'content' => 'required|max:255',
-            'title' => 'required|max:255',
-            'pointer' => 'required|max:255',
-            'reference' => 'required|max:255',
-            'file_id' => 'required'
-        ]);
-
-        $citation = Citation::where(['id' => $id])->update($data);
+        //
     }
 
     /**

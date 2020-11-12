@@ -194,6 +194,10 @@ body {
         margin-top: 5px;
     }
 
+    nav #navbarSupportedContent li {
+        margin-top: 5px;
+    }
+
     /*Estilos para la imagen del sitio que pertenece al navbar*/
     #imgLogoNav {
         float: left;

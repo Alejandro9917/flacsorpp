@@ -3,6 +3,7 @@
 {{--De esta forma se incluyen archivos de estilos personalizados para cada vista sin afectar el resto--}}
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
+<<<<<<< HEAD
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -13,6 +14,8 @@
         crossorigin="anonymous"></script>
 <!-- Bootstrap JS -->
 
+=======
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar">
@@ -22,21 +25,35 @@
         </div>
 
         <ul class="list-unstyled components">
+<<<<<<< HEAD
             <li>
                 <a href="#">Repositorio</a>
             </li>
             <li>
                 <a href="#">Comunidades</a>
+=======
+            <li class="{{ setActive('home.index') }}">
+                <a href="/home">Repositorio</a>
+            </li>
+            <li class="{{ setActive('community.index') }}">
+                <a href="/community">Comunidades</a>
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
             </li>
             <li>
                 <a href="#">Colecciones</a>
             </li>
+<<<<<<< HEAD
             <li class="{{setActive('file.create')}}">
                 <a href="/file/create">Documentos</a>
+=======
+            <li>
+                <a href="#">Documentos</a>
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
             </li>
             <li>
                 <a href="#">Datos</a>
             </li>
+<<<<<<< HEAD
             <li class="{{setActive('author.create')}}">
                 <a href="/author/create">Autores</a>
             </li>
@@ -45,6 +62,16 @@
             </li>
             <li class="{{setActive('tag.create')}}">
                 <a href="/tag/create">Tags</a>
+=======
+            <li class="{{ setActive('autor.index') }}">
+                <a href="autor">Autores</a>
+            </li>
+            <li class="{{ setActive('citaciones.index') }}">
+                <a href="/citaciones">Citaciones</a>
+            </li>
+            <li class="{{ setActive('tags.index') }}">
+                <a href="tags">Tags</a>
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
             </li>
             <li>
                 <a href="#">Usuarios</a>
@@ -76,6 +103,21 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+
+
+>>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 <script type="text/javascript">
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
