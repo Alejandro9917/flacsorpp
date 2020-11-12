@@ -14,12 +14,7 @@ use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TagController;
-<<<<<<< HEAD
 use App\Http\Controllers\UserController;
-=======
-use App\Http\Controllers\AutorController;
-use App\Http\Controllers\CitacionController;
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +45,6 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/metadata', [MetadataController::class, 'index']);
 
 //Rutas para el componente de búsqueda
-<<<<<<< HEAD
 Route::get('/search', [SearchController::class, 'index']);
 
 //Rutas para el componente de login
@@ -88,16 +82,3 @@ Route::resource('/module', ModuleController::class);
 Route::resource('/user', UserController::class);
 Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
 Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
-=======
-Route::resource('/search', SearchController::class)->only(['index']);
-
-//Rutas para el componente de Tags
-Route::resource('/tags', TagController::class)->only(['index']);
-
-//Rutas para el componente de Autores
-Route::resource('/autor', AutorController::class)->only(['index']);
-
-//Rutas para el componente de Citaciones
-Route::resource('/citaciones', CitacionController::class)->only(['index']);
-
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3

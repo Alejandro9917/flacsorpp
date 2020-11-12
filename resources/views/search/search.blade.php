@@ -171,46 +171,6 @@
                         <td>Jorge P. <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
                     </tr>
                 </table>
-<<<<<<< HEAD
-=======
-
-                <h4 class="text-uppercase">
-                    TAG >
-                </h4>
-                <table class="table table-bordered shadow-lg">
-                    <tr>
-                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>Teoria <span class="badge badge-pill badge-secondary ml-5">OO</span></td>
-                    </tr>
-                </table>
-                <h4 class="text-uppercase">
-                    FECHA >
-                </h4>
-                <table class="table table-bordered shadow-lg">
-                    <tr>
-                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                    </tr>
-                    <tr>
-                        <td>2010 - 2020 <span class="badge badge-pill badge-secondary ml-3">OO</span></td>
-                    </tr>
-                </table>
-
-            </div>
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 
                 <h4 class="text-uppercase">
                     TAG >

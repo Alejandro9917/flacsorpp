@@ -14,11 +14,7 @@ class CitationController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD:app/Http/Controllers/CitationController.php
         return Citation::get();
-=======
-        return view('layout.login');
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3:app/Http/Controllers/LoginController.php
     }
 
     /**

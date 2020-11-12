@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\Tag;
-=======
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
 
 class TagController extends Controller
 {
@@ -17,12 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         return response()->json(Tag::get());
-=======
-        // Retornando la vista index
-        return view('tags.index');
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
     }
 
     /**
@@ -32,12 +24,8 @@ class TagController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         // Retornando la vista index
         return view('tags.index');
-=======
-        //
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
     }
 
     /**
@@ -48,7 +36,6 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
         try{
             //Validating received data
             $data = $request->validate([
@@ -66,9 +53,6 @@ class TagController extends Controller
             $error = array(['error' => 'No se ha podido completar'.$ex]);
             return response()->json($error);
         }
-=======
-        //
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
     }
 
     /**
@@ -79,11 +63,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
         return response()->json(Tag::where(['id' => $id])->get());
-=======
-        //
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
     }
 
     /**
@@ -106,7 +86,6 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         //Validating received data
         $data = $request->validate([
             'cod_tag' => 'required|alpha_num|max:250',
@@ -116,9 +95,6 @@ class TagController extends Controller
 
         //Final object with data
         $tag = Tag::where(['id' => $id])->update($data);
-=======
-        //
->>>>>>> e9c852c3251a191925d773d0f357a41c490910b3
     }
 
     /**
