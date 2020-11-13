@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollectionsTable extends Migration
+class CreateMetaDataFormsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('meta_data_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
+            $table->string('form_name');
             $table->string('priority');
-            $table->boolean('is_folder');
-            $table->boolean('is_public');
-            $table->boolean('status');
-            $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('collection_id')->constrained();
+            $table->string('header');
+            $table->boolean('is_required');
             $table->foreignId('collection_type_id')->constrained();
-            $table->datetime('published_at');
             $table->timestamps();
         });
     }
@@ -36,6 +31,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('meta_data_forms');
     }
 }
