@@ -38,13 +38,13 @@
                 <a href="#">Datos</a>
             </li>
             <li>
-                <a href="/author">Autores</a>
+                <a href="/author/create">Autores</a>
             </li>
             <li>
-                <a href="/citation">Citaciones</a>
+                <a href="/citation/create">Citaciones</a>
             </li>
             <li>
-                <a href="/tag">Tags</a>
+                <a href="/tag/create">Tags</a>
             </li>
             <li>
                 <a href="#">Usuarios</a>
