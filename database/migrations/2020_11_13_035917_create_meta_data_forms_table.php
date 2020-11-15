@@ -16,8 +16,13 @@ class CreateMetaDataFormsTable extends Migration
         Schema::create('meta_data_forms', function (Blueprint $table) {
             $table->id();
             $table->string('form_name');
-            $table->string('priority');
             $table->string('header');
+            $table->string('priority');
+            $table->string('class_container');
+            $table->boolean('is_accordion');
+            $table->boolean('is_collapsed');
+            $table->string('extra_js');
+            $table->string('extra_css');
             $table->boolean('is_required');
             $table->foreignId('collection_type_id')->constrained();
             $table->timestamps();

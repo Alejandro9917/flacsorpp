@@ -17,10 +17,13 @@ class CreateMetadataFieldsTable extends Migration
             $table->id();
             $table->string('field_name');
             $table->boolean('is_required');
+            $table->string('container_class');
+            $table->string('id_element');
+            $table->string('class');
             $table->string('validation_rule');
             $table->string('default_value');
             $table->string('placeholder');
-            $table->string('json_config');
+            $table->string('json_config',2048);
             $table->integer('priority');
             $table->foreignId('field_type_id')->constrained();
             $table->foreignId('meta_data_form_id')->constrained();

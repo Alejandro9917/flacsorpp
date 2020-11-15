@@ -15,7 +15,9 @@ class CreateFieldTypesTable extends Migration
     {
         Schema::create('field_types', function (Blueprint $table) {
             $table->id();
+            $table->string('display_name');
             $table->string('type');
+            $table->string('json_template',2048);
             $table->timestamps();
         });
     }
