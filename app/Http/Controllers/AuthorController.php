@@ -14,6 +14,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
+        //Return the Authors in json format
         return response()->json(Author::get());
     }
 

@@ -14,7 +14,8 @@ class CitationController extends Controller
      */
     public function index()
     {
-        return Citation::get();
+        //Return the Citations in json format
+        return response()->json(Citation::get());
     }
 
     /**
@@ -36,17 +37,25 @@ class CitationController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating recived data
-        $data = $request->validation([
-            'content' => 'required|max:255',
-            'title' => 'required|max:255',
-            'pointer' => 'required|max:255',
-            'reference' => 'required|max:255',
-            'file_id' => 'required'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'content' => 'required|max:255',
+                'title' => 'required|max:255',
+                'pointer' => 'required|max:255',
+                'reference' => 'required|max:255',
+                'file_id' => 'required'
+            ]);
 
-        //Final object with data
-        $citation = Citation::create($data);
+            //Final object with data
+            $citation = Citation::create($data);
+            return response()->json($citation);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**
@@ -57,7 +66,8 @@ class CitationController extends Controller
      */
     public function show($id)
     {
-        //
+        //Return the Citations in json format
+        return response()->json(Citation::where(['id' => $id])->first());
     }
 
     /**
@@ -80,16 +90,24 @@ class CitationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating recived data
-        $data = $request->validation([
-            'content' => 'required|max:255',
-            'title' => 'required|max:255',
-            'pointer' => 'required|max:255',
-            'reference' => 'required|max:255',
-            'file_id' => 'required'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'content' => 'required|max:255',
+                'title' => 'required|max:255',
+                'pointer' => 'required|max:255',
+                'reference' => 'required|max:255',
+                'file_id' => 'required'
+            ]);
 
-        $citation = Citation::where(['id' => $id])->update($data);
+            $citation = Citation::where(['id' => $id])->update($data);
+            return response()->json($citation);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**

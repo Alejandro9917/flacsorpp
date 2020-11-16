@@ -50,7 +50,7 @@
                 getAuthor(id);
             });
 
-            $('#modalTag').on('hiden.bs.modal', function (event) {
+            $('#modalAuthor').on('hiden.bs.modal', function (event) {
                 //Se limpian los datos
                 clear();
             });
