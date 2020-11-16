@@ -31,19 +31,19 @@
             <li>
                 <a href="#">Colecciones</a>
             </li>
-            <li>
-                <a href="#">Documentos</a>
+            <li class="{{setActive('file.create')}}">
+                <a href="/file/create">Documentos</a>
             </li>
             <li>
                 <a href="#">Datos</a>
             </li>
-            <li>
+            <li class="{{setActive('author.create')}}">
                 <a href="/author/create">Autores</a>
             </li>
-            <li>
+            <li class="{{setActive('citation.create')}}">
                 <a href="/citation/create">Citaciones</a>
             </li>
-            <li>
+            <li class="{{setActive('tag.create')}}">
                 <a href="/tag/create">Tags</a>
             </li>
             <li>
