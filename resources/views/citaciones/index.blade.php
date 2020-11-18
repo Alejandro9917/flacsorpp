@@ -122,12 +122,12 @@
                 url: "http://127.0.0.1:8000/citation",
                 method: 'POST',
                 data: {
-                    _token: "hwDjTqcEaTwyiDJyIgut5jKvNw7JtRyNq7VrQZ5x",
-                    content: $("#content").val(),
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    content: $('[name="content"]').val(),
                     title: $("#title").val(),
                     pointer: $("#pointer").val(),
                     reference: $("#reference").val(),
-                    file_id: 1,
+                    file_id: 2,
                 },
                 success: function(res){
                     var response = res;
@@ -146,8 +146,8 @@
                 url: "http://127.0.0.1:8000/citation/" + id,
                 method: 'PUT',
                 data: {
-                    _token: "hwDjTqcEaTwyiDJyIgut5jKvNw7JtRyNq7VrQZ5x",
-                    content: $("#content").val(),
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    content: $('[name="content"]').val(),
                     title: $("#title").val(),
                     pointer: $("#pointer").val(),
                     reference: $("#reference").val(),
@@ -190,7 +190,7 @@
         }
 
         //Función para pintar los datos en el formulario
-        function setErrors(erros){
+        function setErrors(errors){
             $("#content").after("<span class='text-danger'>" + errors.content + "</span>");
             $("#title").after("<span class='text-danger'>" + errors.title + "</span>");
             $("#pointer").after("<span class='text-danger'>" + errors.pointer + "</span>");
@@ -230,7 +230,7 @@
                 <form id="formCitation" action="">
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <input class="form-control" type="text" name="content" id="content" placeholder="Ingrese el Contenido">
+                        <input class="form-control" type="text" name="content" placeholder="Ingrese el Contenido">
                     </div>
 
                     <div class="form-group">

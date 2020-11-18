@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        return File::get();
+        return response()->json(File::with('user')->get());
     }
 
     /**
@@ -24,8 +24,6 @@ class FileController extends Controller
      */
     public function create()
     {
-//        $files = File::get();
-        //Mostrando la vista de index de files
         return view('files.index');
     }
 
@@ -37,17 +35,25 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'name' => 'required|max:255',
+                'type' => 'required|max:255',
+                'status' => 'required|max:255',
+                'created_by' => 'required',
+                'collection_id' => 'required'
+            ]);
 
-        //Final object with data
-        $file = File::create($data);
+            //Final object with data
+            $file = File::create($data);
+            return response()->json($file);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**
@@ -58,7 +64,7 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(File::where(['id' => $id])->first());
     }
 
     /**
@@ -81,16 +87,24 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'name' => 'required|max:255',
-            'type' => 'required|max:255',
-            'status' => 'required|max:255',
-            'created_by' => 'user_id',
-            'collection_id' => 'collection_id'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'name' => 'required|max:255',
+                'type' => 'required|max:255',
+                'status' => 'required|max:255',
+                'created_by' => 'required',
+                'collection_id' => 'required'
+            ]);
 
-        $file = File::where(['id' => $id])->update($data);
+            $file = File::where(['id' => $id])->update($data);
+            return response()->json($file);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**

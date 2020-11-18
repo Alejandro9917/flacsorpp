@@ -92,12 +92,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        /*$user = User::find($id);
         return view('user.show')->with(
             array(
                 'user' => $user
             )
-        );
+        );*/
+        return response()->json(User::where(['id' => $id])->first());
     }
 
     /**

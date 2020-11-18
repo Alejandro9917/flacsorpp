@@ -36,22 +36,17 @@
     </div>
 
     <script type="text/javascript">
-        //Evento cuando termine de cargar la página
         $(document).ready(function() {
-            //Se obtienen los datos
             getAuthors();
 
-            //Se imprimen los datos de cada tag en el modal asigando 
             $('#modalAuthor').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var id = button.data('whatever');
 
-                //Se obtienen los datos de un único tag mediante un request
                 getAuthor(id);
             });
 
             $('#modalAuthor').on('hiden.bs.modal', function (event) {
-                //Se limpian los datos
                 clear();
             });
         });

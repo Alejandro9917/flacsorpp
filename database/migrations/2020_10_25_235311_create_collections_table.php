@@ -22,7 +22,7 @@ class CreateCollectionsTable extends Migration
             $table->boolean('is_public');
             $table->boolean('status');
             $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('collection_id')->constrained();
+            $table->foreignId('collection_id')->constrained()->nullable();
             $table->foreignId('collection_type_id')->constrained();
             $table->datetime('published_at');
             $table->timestamps();

@@ -68,7 +68,7 @@ Route::resource('/collection', CollectionController::class)->except([
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
-    'show', 'edit', 'destroy'
+    'edit', 'destroy'
 ]);
 
 //Route for tag controller
