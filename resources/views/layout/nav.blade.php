@@ -18,7 +18,7 @@
     <nav id="sidebar">
         <div class="sidebar-header text-center">
             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg" class="img-circle mt-1">
-            <h5 class="mt-3">User Name</h5>
+            <h5 class="mt-3">{{ Auth::user()->first_name }} {{ Auth::user()->first_lastname }}</h5>
         </div>
 
         <ul class="list-unstyled components">
@@ -54,6 +54,9 @@
             </li>
             <li>
                 <a href="#">Roles</a>
+            </li>
+            <li>
+                <a href="/logout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>

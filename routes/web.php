@@ -9,6 +9,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MetadataController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\RoleController;
@@ -48,33 +49,35 @@ Route::get('/metadata', [MetadataController::class, 'index']);
 Route::get('/search', [SearchController::class, 'index']);
 
 //Rutas para el componente de login
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login/', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::get('/logout', [LoginController::class, 'logout']);
 
 //Private route
 //Route for author controller 
 Route::resource('/author', AuthorController::class)->except([
     'edit', 'destroy'
-]);
+])->middleware('auth');
 
 //Route for citation controller
 Route::resource('/citation', CitationController::class)->except([
     'edit', 'destroy'
-]);
+])->middleware('auth');
 
 //Route for collection controller
 Route::resource('/collection', CollectionController::class)->except([
     'show', 'edit', 'destroy'
-]);
+])->middleware('auth');
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
     'show', 'edit', 'destroy'
-]);
+])->middleware('auth');
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
     'edit', 'destroy'
-]);
+])->middleware('auth');
 
 //Roles routes
 Route::resource('/role', RoleController::class);
