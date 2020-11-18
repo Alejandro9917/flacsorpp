@@ -7,9 +7,7 @@
                 <input type="search" class="form-control" placeholder="Buscar...">
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                <button type="submit" class="btn btn-info btn-tags" data-toggle="modal"
-                        data-target="#modalCitation"><i class="fas fa-file-alt"></i> Crear Citación
-                </button>
+                <button type="submit" class="btn btn-info btn-tags" data-toggle="modal" data-target="#modalCitation"><i class="fas fa-file-alt"></i> Crear Citación</button>
             </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">

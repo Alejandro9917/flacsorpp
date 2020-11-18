@@ -53,12 +53,12 @@ Route::get('/login', [UserController::class, 'login']);
 //Private route
 //Route for author controller 
 Route::resource('/author', AuthorController::class)->except([
-    'edit', 'destroy'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for citation controller
 Route::resource('/citation', CitationController::class)->except([
-    'edit', 'destroy'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for collection controller
@@ -68,11 +68,16 @@ Route::resource('/collection', CollectionController::class)->except([
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
-    'edit', 'destroy'
+    'show', 'edit', 'destroy'
 ]);
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
+    'edit', 'destroy'
+]);
+
+//Route for collection controller
+Route::resource('/collection', CollectionController::class)->except([
     'edit', 'destroy'
 ]);
 
