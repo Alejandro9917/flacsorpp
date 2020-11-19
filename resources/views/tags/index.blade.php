@@ -171,7 +171,7 @@
 
         //Función para limpiar los campos
         function clear(){
-            $("#cod_tag").val(0);
+            $("#cod_tag").val("");
             $("#name").val("");
             $("#color").val("");
             $("#send").attr('data-whatever', "null");
@@ -195,14 +195,15 @@
             <div class="modal-body">
                 <form id="form_tag" action="">
                     {{ csrf_field() }}
-                    <div class="form-group">
-                        <label for="cod_tag">Codigo</label>
-                        <input class="form-control" type="number" name="cod_tag" id="cod_tag" min="0" value="0">
-                    </div>
 
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input class="form-control" type="text" name="name" id="name" placeholder="Nombre del tag">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cod_tag">Código</label>
+                        <input class="form-control" type="text" name="cod_tag" id="cod_tag" placeholder="Código del tag">
                     </div>
 
                     <div class="form-group">

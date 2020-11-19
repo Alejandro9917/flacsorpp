@@ -68,6 +68,12 @@ class CitationController extends Controller
         return response()->json(Citation::where(['id' => $id])->first());
     }
 
+    public function getCitationsFile($file_id){
+        //Return the citations for file id in json
+        $citations = Citation::where(['file_id' => $file_id])->get();
+        return response()->json($citations);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

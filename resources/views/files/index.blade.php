@@ -22,6 +22,7 @@
                             <th scope="col">Estado</th>
                             <th scope="col">Creado por</th>
                             <th scope="col">Modificado</th>
+                            <th scope="col">Vincular</th>
                             <th scope="col">Opciones</th>
                         </tr>
                         </thead>
@@ -48,6 +49,28 @@
             $('#modalFile').on('hiden.bs.modal', function (event) {
                 clear();
             });
+
+            $("#modalCitation").on('show.bs.modal', function(event){
+                var button = $(event.relatedTarget);
+                var id = button.data('file');
+                getCitations(id);
+            });
+
+            $("#modalCitation").on('hide.bs.modal', function(event){
+                $("#table_citations").empty();
+            });
+
+            $("#modalTag").on('show.bs.modal', function(event){
+                var button = $(event.relatedTarget);
+                var id = button.data('file');
+                $("#modalTag").attr('data-whatever', id);
+                getTagsFile(id);
+                getTags();
+            });
+
+            $("#modalTag").on('hide.bs.modal', function(event){
+                $("#table_tags").empty();
+            });
         });
 
         $("#send").click(function(){
@@ -68,6 +91,28 @@
             clear();
         });
 
+        function linkUpTag(tag_id){
+            file_id = $("#modalTag").attr('data-whatever');
+
+            $.ajax({            
+                url: "http://127.0.0.1:8000/files/tags",
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    file_id: file_id,
+                    tag_id: tag_id
+                },
+                success: function(res){
+                    var response = res;
+                    console.log(res);
+                },
+                error: function(res){
+                    var response = res;
+                    console.log(response);
+                }
+            });
+        }
+
         function getFiles(){
             $.ajax({
                 url: "http://127.0.0.1:8000/file",
@@ -78,7 +123,7 @@
             }).done(function(res){
                     var response = res;
                     print(response);
-                });
+            });
         }
 
         function getFile(id){
@@ -90,7 +135,43 @@
             }).done(function(res){
                     var response = res;
                     set(response);
-                });
+            });
+        }
+
+        function getCitations(file_id){
+            $.ajax({
+                url: "http://127.0.0.1:8000/citation/file/" + file_id,
+                method: "GET",
+                error: function(res){
+                }
+            }).done(function(res){
+                    var response = res;
+                    printCitations(response);
+            });
+        }
+
+        function getTags(){
+            $.ajax({
+                url: "http://127.0.0.1:8000/tag/",
+                method: "GET",
+                error: function(res){
+                }
+            }).done(function(res){
+                    var response = res;
+                    printTags(response);
+            });
+        }
+
+        function getTagsFile(file_id){
+            $.ajax({
+                url: "http://127.0.0.1:8000/file/tags/" + file_id,
+                method: "GET",
+                error: function(res){
+                }
+            }).done(function(res){
+                    var response = res;
+                    printTagsFile(response);
+            });
         }
 
         function send(){
@@ -147,10 +228,61 @@
                     "<td>" + (file.status ? "Activo" : "Inactivo") + "</td>" +
                     "<td>" + file.user.name + "</td>" +
                     "<td>" + file.updated_at + "</td>" +
+                    "<td>"+
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-toggle='tooltip' data-placement='bottom' title='Vincular Autores'>" +
+                        "<i class='fas fa-address-book' data-toggle='modal' data-target='#modalAuthor'></i></button>" +
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" + 
+                        "<i class='fas fa-calendar-plus'></i></button>" +
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" + 
+                        "<i class='fas fa-clipboard'></i></button>" +
+                    "</td>" +
                     "<td><button type='submit' class='btn btn-warning' data-toggle='modal' data-target='#modalFile' data-whatever=" + file.id + "><i class='fas fa-pencil-alt'></i> Editar</button></td>" +
                     "</tr>"
                 );
             });
+        }
+
+        function printCitations(citations){
+            citations.map(function(citation){
+                $("#table_citations").append(
+                    "<tr>" +
+                    "<th scope='row'>" + citation.id + "</th>" +
+                    "<td>" + citation.title + "</td>" +
+                    "<td>" + citation.content + "</td>" +
+                    "<td>" + citation.point + "</td>" +
+                    "<td>" + citation.reference + "</td>" +
+                    "<td><button type='submit' class='btn bg-success' data-citation=" + citation.id + "><i class='far fa-check-circle'></i></button></td>" +
+                    "</tr>"
+                );
+            });
+        }
+
+        function printTags(tags){
+            tags.map(function(tag){
+                $("#table_tags").append(
+                    "<tr>" +
+                    "<th scope='row'>" + tag.id + "</th>" +
+                    "<td>" + tag.cod_tag + "</td>" +
+                    "<td>" + tag.name + "</td>" +
+                    "<td>" + tag.color + "</td>" +
+                    "<td><button onClick='linkUpTag(" + tag.id + ")' type='submit' class='btn bg-success' data-file=" + tag.id + "><i class='far fa-check-circle'></i></button></td>" +
+                    "</tr>"
+                );
+            }); 
+        }
+
+        function printTagsFile(tags){
+            tags.map(function(tag){
+                $("#table_tags_file").append(
+                    "<tr>" +
+                    "<th scope='row'>" + tag.id + "</th>" +
+                    "<td>" + tag.cod_tag + "</td>" +
+                    "<td>" + tag.name + "</td>" +
+                    "<td>" + tag.color + "</td>" +
+                    "<td><button type='submit' class='btn bg-success' data-dismiss='modal' data-tag=" + tag.id + "><i class='far fa-check-circle'></i></button></td>" +
+                    "</tr>"
+                );
+            }); 
         }
 
         function set(file){
@@ -183,8 +315,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade shadow-sm" id="modalFile" tabindex="-1" role="dialog"
-     aria-labelledby="modalFileTitle" aria-hidden="true">
+<div class="modal fade shadow-sm" id="modalFile" tabindex="-1" role="dialog" aria-labelledby="modalFileTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -222,23 +353,118 @@
 </div>
 
 
-{{-- Modal para los links dentro de las opciones de Documentos --}}
-<!-- Modal -->
-<div class="modal fade shadow-sm" id="exampleModalLink" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered" role="document">
+<!--Modal de citaciones-->
+<div class="modal fade shadow-sm" id="modalCitation" tabindex="-1" role="dialog" aria-labelledby="modalCitationTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Registro de Documentos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="modalCitationTitle">Citaciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary mb-2"><i class="fas fa-plus"></i>Ir a Crear Nueva</button>
+                <div class="table-responsive">
+                    <table class="table bg-success table-active table-hover">
+                        <caption>Lista de Autores</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Contenido</th>
+                            <th scope="col">Punto</th>
+                            <th scope="col">Referencia</th>
+                            <th scope="col">Añadir</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table_citations" class="bg-light">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times-circle"></i>Cerrar</button></div>
+        </div>
+    </div>
+</div>
+
+<!--Modal de tags-->
+<div class="modal fade shadow-sm" id="modalTag" tabindex="-1" role="dialog" aria-labelledby="modalTagTitle" aria-hidden="true" data-whatever="">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTagTitle">Tags</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary mb-2"><i class="fas fa-plus"></i> Ir a crear nuevo</button>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="asiganados_tab" data-toggle="tab" href="#asiganados" role="tab" aria-controls="asiganados" aria-selected="true">Tag asignados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nuevo_tab" data-toggle="tab" href="#nuevo" role="tab" aria-controls="nuevo" aria-selected="false">Tags disponibles</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="asiganados" role="tabpanel" aria-labelledby="asiganados_tab">
+                        <div class="table-responsive">
+                            <table class="table bg-success table-active table-hover">
+                                <caption>Lista de Tags</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Añadir</th>
+                                </tr>
+                                </thead>
+                                <tbody id="table_tags_file" class="bg-light">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nuevo" role="tabpanel" aria-labelledby="nuevo_tab">
+                        <div class="table-responsive">
+                            <table class="table bg-success table-active table-hover">
+                                <caption>Lista de Tags</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Color</th>
+                                    <th scope="col">Añadir</th>
+                                </tr>
+                                </thead>
+                                <tbody id="table_tags" class="bg-light">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times-circle"></i>Cerrar</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade shadow-sm" id="modalAuthor" tabindex="-1" role="dialog" aria-labelledby="modalAuthorTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAuthorTitle">Autores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <button type="button" class="btn btn-primary mb-2"><i class="fas fa-plus"></i>
-                    Crear Nuevo
+                    Ir a Crear Nuevo
                 </button>
                 <div class="table-responsive">
-                    <table class="table bg-success table-active table-hover">
-                        <caption>List of Tags</caption>
+                    <table id="table_authors" class="table bg-success table-active table-hover">
+                        <caption>Lista de Autores</caption>
                         <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -275,10 +501,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times-circle"></i>
-                    Cerrar
-                </button>
-            </div>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times-circle"></i>Cerrar</button></div>
         </div>
     </div>
 </div>

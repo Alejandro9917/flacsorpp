@@ -39,7 +39,7 @@ class TagController extends Controller
         try{
             //Validating received data
             $data = $request->validate([
-                'cod_tag' => 'required|alpha_num|max:250',
+                'cod_tag' => 'required|alpha_dash|max:250',
                 'name' => 'required|alpha_num|max:250',
                 'color' => 'required|alpha_num|max:250'
             ]);
@@ -89,7 +89,7 @@ class TagController extends Controller
         try{
             //Validating received data
             $data = $request->validate([
-                'cod_tag' => 'required|alpha_num|max:250',
+                'cod_tag' => 'required|alpha_dash|max:250',
                 'name' => 'required|alpha_num|max:250',
                 'color' => 'required|alpha_num|max:250'
             ]);

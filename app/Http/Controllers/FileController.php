@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\File;
 
 class FileController extends Controller
@@ -27,12 +28,6 @@ class FileController extends Controller
         return view('files.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try{
@@ -56,35 +51,41 @@ class FileController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+    public function setFileTag(Request $request){
+        $exists = DB::table('file_tags')->where([
+            'file_id' => $request->file_id, 
+            'tag_id' => $request->tag_id
+            ])->get();
+
+        if(count($exists) == 0){
+            $file_tag = DB::table('file_tags')->insert([
+                'file_id' => $request->file_id,
+                'tag_id' => $request->tag_id
+            ]);
+    
+            return response()->json($file_tag);
+        }
+
+        else{
+            return response()->json(['warning' => 'Ya existe el registro']);
+        }
+    }
+
     public function show($id)
     {
         return response()->json(File::where(['id' => $id])->first());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
+    public function getTagsFile($id){
+        $tags = File::where(['id' => $id])->first();
+        return response()->json($tags->tags);
+    }
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         try{
@@ -107,12 +108,6 @@ class FileController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

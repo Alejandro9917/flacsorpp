@@ -60,6 +60,7 @@ Route::resource('/author', AuthorController::class)->except([
 Route::resource('/citation', CitationController::class)->except([
     'show', 'edit', 'destroy'
 ]);
+Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsFile']);
 
 //Route for collection controller
 Route::resource('/collection', CollectionController::class)->except([
@@ -70,6 +71,8 @@ Route::resource('/collection', CollectionController::class)->except([
 Route::resource('/file', FileController::class)->except([
     'show', 'edit', 'destroy'
 ]);
+Route::get('/file/tags/{file_id}', [FileController::class, 'getTagsFile']);
+Route::post('/files/tags', [FileController::class, 'setFileTag']);
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
