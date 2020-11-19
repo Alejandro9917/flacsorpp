@@ -25,11 +25,8 @@
             <li>
                 <a href="#">Repositorio</a>
             </li>
-            <li>
-                <a href="#">Comunidades</a>
-            </li>
-            <li>
-                <a href="#">Colecciones</a>
+            <li class="{{setActive('collection.create')}}">
+                <a href="/collection/create">Comunidades</a>
             </li>
             <li class="{{setActive('file.create')}}">
                 <a href="/file/create">Documentos</a>

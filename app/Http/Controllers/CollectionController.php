@@ -24,7 +24,7 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        $collections = Collection::get();
+        return view('colecciones/index');
     }
 
     /**

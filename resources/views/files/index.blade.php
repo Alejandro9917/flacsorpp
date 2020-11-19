@@ -70,6 +70,12 @@
 
             $("#modalTag").on('hide.bs.modal', function(event){
                 $("#table_tags").empty();
+                $("#table_tags_file").empty();
+            });
+
+            $('a#asiganados_tab').on('shown.bs.tab', function (e) {
+                id = $("#modalTag").attr('data-whatever');
+                getTagsFile(id);
             });
         });
 
@@ -111,6 +117,31 @@
                     console.log(response);
                 }
             });
+        }
+
+        function unlinkTag(tag_id){
+            file_id = $("#modalTag").attr('data-whatever');
+
+            $.ajax({            
+                url: "http://127.0.0.1:8000/files/tags/delete",
+                method: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    file_id: file_id,
+                    tag_id: tag_id
+                },
+                success: function(res){
+                    var response = res;
+                    console.log(res);
+                },
+                error: function(res){
+                    var response = res;
+                    console.log(response);
+                }
+            });
+
+            $("#table_tags_file").empty();
+            getTagsFile(file_id);
         }
 
         function getFiles(){
@@ -279,7 +310,7 @@
                     "<td>" + tag.cod_tag + "</td>" +
                     "<td>" + tag.name + "</td>" +
                     "<td>" + tag.color + "</td>" +
-                    "<td><button type='submit' class='btn bg-success' data-dismiss='modal' data-tag=" + tag.id + "><i class='far fa-check-circle'></i></button></td>" +
+                    "<td><button onClick='unlinkTag(" + tag.id + ")' type='submit' class='btn bg-danger' data-dismiss='modal' data-tag=" + tag.id + "><i class='text-white far fa-trash-alt'></i></button></td>" +
                     "</tr>"
                 );
             }); 

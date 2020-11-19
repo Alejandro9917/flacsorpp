@@ -64,7 +64,7 @@ Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsF
 
 //Route for collection controller
 Route::resource('/collection', CollectionController::class)->except([
-    'show', 'edit', 'destroy'
+    'edit', 'destroy'
 ]);
 
 //Route for file controller
@@ -73,6 +73,7 @@ Route::resource('/file', FileController::class)->except([
 ]);
 Route::get('/file/tags/{file_id}', [FileController::class, 'getTagsFile']);
 Route::post('/files/tags', [FileController::class, 'setFileTag']);
+Route::post('/files/tags/delete', [FileController::class, 'removeFileTag']);
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([
