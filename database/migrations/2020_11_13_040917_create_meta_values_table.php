@@ -17,7 +17,8 @@ class CreateMetaValuesTable extends Migration
             $table->id();
             $table->string('value');
             $table->foreignId('metadata_field_id')->constrained();
-            $table->foreignId('collection_id')->constrained();
+            //$table->foreignId('collection_id')->constrained();
+            $table->foreignId('file_id')->constrained();
             $table->timestamps();
         });
     }

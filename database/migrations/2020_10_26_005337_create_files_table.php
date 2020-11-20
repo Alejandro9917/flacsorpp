@@ -20,7 +20,7 @@ class CreateFilesTable extends Migration
             $table->string('status');
             $table->foreignId('created_by')->constrained('users');
             $table->foreignId('collection_id')->constrained();
-
+            $table->foreignId('collection_type_id')->constrained();
             $table->timestamps();
         });
     }
