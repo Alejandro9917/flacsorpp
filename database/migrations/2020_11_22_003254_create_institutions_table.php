@@ -17,6 +17,8 @@ class CreateInstitutionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('slug');
+            $table->string('webpage');
             $table->string('contact');
             $table->string('status');
             $table->timestamps();
