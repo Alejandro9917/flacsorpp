@@ -73,9 +73,7 @@ class FileController extends Controller
             $data = $request->validate([
                 'name' => 'required|max:255',
                 'type' => 'required|max:255',
-                'status' => 'required|max:255',
-                'created_by' => 'required',
-                'collection_id' => 'required'
+                'status' => 'required|max:255'
             ]);
 
             $file = File::where(['id' => $id])->update($data);

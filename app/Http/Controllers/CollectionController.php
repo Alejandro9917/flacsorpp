@@ -14,7 +14,11 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        return Collection::get();
+        return response()->json(Collection::with('user')->get());
+    }
+
+    public function publicCollections(){
+        return response()->json(Collection::get());
     }
 
     /**
@@ -35,20 +39,28 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'priority' => 'required|max:255',
-            'is_folder' => 'required|boolean',
-            'is_public' => 'required|boolean',
-            'status' => 'boolean',
-            'created_by' => 'required',
-            'collection_id' => 'required'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'name' => 'required|max:255',
+                'slug' => 'required|max:255',
+                'priority' => 'required|max:255',
+                'is_folder' => 'required|boolean',
+                'is_public' => 'required|boolean',
+                'status' => 'required|boolean',
+                'created_by' => 'required',
+                'published_at' => 'required'
+            ]);
 
-        //Final object with data
-        $collection = Collection::create($data);
+            //Final object with data
+            $collection = Collection::create($data);
+            return response()->json($collection);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**
@@ -59,7 +71,7 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Collection::where(['id' => $id])->first());
     }
 
     /**
@@ -82,19 +94,24 @@ class CollectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'name' => 'required|max:255',
-            'slug' => 'required|max:255',
-            'priority' => 'required|max:255',
-            'is_folder' => 'required|boolean',
-            'is_public' => 'required|boolean',
-            'status' => 'boolean',
-            'created_by' => 'required',
-            'collection_id' => 'required'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'name' => 'required|max:255',
+                'slug' => 'required|max:255',
+                'priority' => 'required|max:255',
+                'is_folder' => 'required|boolean',
+                'is_public' => 'required|boolean',
+                'status' => 'boolean'
+            ]);
 
-        $collection = Collection::where(['id' => $id])->update($data);
+            $collection = Collection::where(['id' => $id])->update($data);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**

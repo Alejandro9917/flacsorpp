@@ -54,6 +54,10 @@
                 //Se limpian los datos
                 clear();
             });
+
+            $("#name").keyup(function(){
+                $("#cod_tag").val($("#name").val().toLowerCase().replace(/ /gi, "-"));
+            });
         });
 
         //Evento cuando se cree un nuevo tag
@@ -202,7 +206,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="cod_tag">Código</label>
+                        <label for="cod_tag">Slug</label>
                         <input class="form-control" type="text" name="cod_tag" id="cod_tag" placeholder="Código del tag">
                     </div>
 

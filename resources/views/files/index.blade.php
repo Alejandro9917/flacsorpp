@@ -214,8 +214,8 @@
                     name: $("#name").val(),
                     type: $("#type").val(),
                     status: $("#status").val(),
-                    created_by: 1,
-                    collection_id: 3
+                    created_by: {{ Auth::user()->id }},
+                    collection_id: 1
                 },
                 success: function(res){
                     var response = res;
@@ -235,9 +235,7 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     name: $("#name").val(),
                     type: $("#type").val(),
-                    status: $("#status").val(),
-                    created_by: 1,
-                    collection_id: 3
+                    status: $("#status").val()
                 },
                 success: function(res){
                     var response = res;

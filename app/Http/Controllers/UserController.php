@@ -24,12 +24,6 @@ class UserController extends Controller
         );
     }
 
-    //Función para mostrar el login
-    public function login()
-    {
-        return view('layout.login');
-    }
-
     /**
      * Show the form for creating a new resource.
      *

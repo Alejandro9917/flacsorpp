@@ -1,13 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-            <h3 class="font-weight-bold mt-3 mb-3">Politicas Publicas</h3>
+            <h3 class="font-weight-bold mt-3 mb-3">Políticas Públicas</h3>
         </div>
 
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
             <table class="table table-bordered shadow-lg">
-                <tr>
+                <tbody id="table_collections"></tbody>
+                <!--<tr>
                     <th class="bg-principal"></th>
                     <th>
                         <p class="font-weight-bold">Politicas publicas en Educacion</p>
@@ -26,25 +27,7 @@
                             maxime minima minus nihil repudiandae? Beatae, cum!
                         </small>
                     </th>
-                </tr>
-                <tr>
-                    <th class="bg-principal"></th>
-                    <th>
-                        <p class="font-weight-bold">Politicas publicas Territoriales</p>
-                        <small>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad deserunt dolorem, illo
-                        </small>
-                    </th>
-                </tr>
-                <tr>
-                    <th class="bg-principal"></th>
-                    <th>
-                        <p class="font-weight-bold">Politicas publicas Migratorias</p>
-                        <small>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad deserunt dolorem, illo
-                        </small>
-                    </th>
-                </tr>
+                </tr>-->
             </table>
 
         </div>
@@ -141,3 +124,34 @@
 
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        getCollections();
+    });
+
+    function getCollections(){
+        $.ajax({
+                url: "http://127.0.0.1:8000/public/collection",
+                method: "GET"
+
+            }).done(function(res){
+                var response = res;
+                printCollection(response);
+        });
+    }
+
+    function printCollection(collections){
+        collections.map(function(collection){
+            $("#table_collections").append(
+                "<tr>" +
+                "<th class='bg-principal'></th>" +
+                "<th>" +
+                "<p class='font-weight-bold'>" + collection.name + "</p>" +
+                "<small>Descripciones sobre las colecciones</small>" +
+                "</th>" +
+                "</tr>"
+            );
+        });
+    }
+</script>

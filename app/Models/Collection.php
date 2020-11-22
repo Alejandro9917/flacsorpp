@@ -19,7 +19,7 @@ class Collection extends Model
 
     //Relación con Users
     public function User(){
-        return $this->belongsTo(User::class, 'id', 'created_by');
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     //Relación con files

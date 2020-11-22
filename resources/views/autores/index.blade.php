@@ -97,15 +97,14 @@
             //Se obtienen los tags
             $.ajax({
                 url: "http://127.0.0.1:8000/author/" + id,
-                method: "GET",
-                success: function(res){
+                method: "GET"
+            }).done(function(res){
                     //Captura los datos de la api
                     var response = res;
 
                     //Envia los datos a la función para pintarlos
                     set(response);
-                }
-            });
+                });
         }
 
         //Función para agregar un nuevo autor

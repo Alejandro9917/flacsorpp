@@ -9,14 +9,15 @@
             <div class="text-center">
                 <img src="{{ asset('img/logo.png') }}" class="img-login">
             </div>
-            <form>
+            <form action="{{ route('authenticate') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="form-group">
-                    <label for="username">Usuario</label>
-                    <input type="email" class="form-control" id="username" placeholder="Nombre de usuario">
+                    <label for="name">Usuario</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre de usuario">
                 </div>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Contraseña" id="password">
+                    <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password">
                 </div>
                 <button type="submit" class="btn bg-principal btn-login">Entrar</button>
                 <a href="#" class="ml-2 link-ayuda">¿Necesitas ayuda?</a>
