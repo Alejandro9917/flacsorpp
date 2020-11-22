@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMetaValuesTable extends Migration
+class CreateFileTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateMetaValuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('meta_values', function (Blueprint $table) {
+        Schema::create('file_types', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
-            $table->foreignId('metadata_field_id')->constrained();
-            //$table->foreignId('collection_id')->constrained();
-            $table->foreignId('file_id')->constrained();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateMetaValuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meta_values');
+        Schema::dropIfExists('file_types');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCollectionTypesTable extends Migration
+class CreateInstitutionsCollectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateCollectionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('collection_types', function (Blueprint $table) {
+        Schema::create('institutions_collections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('collection_id')->constrained();
+            $table->foreignId('institution_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateCollectionTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collection_types');
+        Schema::dropIfExists('institutions_collections');
     }
 }
