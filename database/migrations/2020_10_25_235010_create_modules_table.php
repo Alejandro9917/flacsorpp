@@ -16,7 +16,7 @@ class CreateModulesTable extends Migration
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
             $table->string('route_regex');
-            $table->boolean('has_file');
+            $table->boolean('has_file')->nullable();
             $table->timestamps();
         });
     }
