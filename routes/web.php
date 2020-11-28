@@ -68,10 +68,12 @@ Route::resource('/citation', CitationController::class)->except([
 ])->middleware('auth');
 Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsFile']);
 
-//Route for collection controller
-Route::resource('/collection', CollectionController::class)->except([
-    'edit', 'destroy'
-])->middleware('auth');
+Route::group(['middleware' => ['needs_role']], function () {
+    //Route for collection controller
+    Route::resource('/collection', CollectionController::class)->except([
+        'edit', 'destroy'
+    ]);
+});
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
@@ -89,8 +91,12 @@ Route::resource('/tag', TagController::class)->except([
 ])->middleware('auth');
 
 //Roles routes
-Route::resource('/role', RoleController::class);
-Route::resource('/module', ModuleController::class);
-Route::resource('/user', UserController::class);
-Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
-Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
+
+
+    Route::resource('/role', RoleController::class);
+    Route::resource('/module', ModuleController::class);
+    Route::resource('/user', UserController::class);
+    Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
+    Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
+
+
