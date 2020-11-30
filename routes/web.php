@@ -72,15 +72,21 @@ Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsF
 Route::resource('/collection', CollectionController::class)->except([
     'edit', 'destroy'
 ])->middleware('auth');
+Route::middleware('auth')->group(function(){
+    Route::get('/collection/in/{collection_slug}', [CollectionController::class, 'inCollection']);
+    Route::get('/collection/childs/{collection_id}', [CollectionController::class, 'getChilds']);
+});
 
 //Route for file controller
 Route::resource('/file', FileController::class)->except([
-    'show', 'edit', 'destroy'
+    'edit', 'destroy'
 ])->middleware('auth');
 Route::middleware('auth')->group(function(){
     Route::get('/file/tags/{file_id}', [FileController::class, 'getTagsFile']);
     Route::post('/files/tags', [FileController::class, 'setFileTag']);
     Route::post('/files/tags/delete', [FileController::class, 'removeFileTag']);
+    Route::get('file/in/{collection_slug}', [FileController::class, 'inCollection']);
+    Route::get('file/childs/{collection_id}', [FileController::class, 'getChilds']);
 });
 
 //Route for tag controller

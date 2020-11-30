@@ -70,11 +70,12 @@
             clearErrors();
             getCollections();
             clear();
+
         });
 
         function getCollections(){
             $.ajax({
-                url: "http://127.0.0.1:8000/collection",
+                url: "http://127.0.0.1:8000/collection/childs/" + {{ $id }},
                 method: "GET"
 
             }).done(function(res){
@@ -94,7 +95,6 @@
         }
 
         function send(){
-            var now = new Date();
             $.ajax({            
                 url: "http://127.0.0.1:8000/collection/",
                 method: 'POST',
@@ -106,7 +106,8 @@
                     is_folder: $("#is_folder").val(),
                     is_public: $("#is_public").val(),
                     status: $("#status").val(),
-                    created_by: {{ Auth::user()->id }}
+                    created_by: {{ Auth::user()->id }},
+                    collection_id: {{ $id }}
                 },
                 success: function(res){
                     var response = res;
@@ -154,7 +155,7 @@
                         "<a href='http://127.0.0.1:8000/" + (collection.is_folder ? 'file':'collection') + "/in/" + collection.slug + "' " +
                         "class='btn btn-warning' data-toggle=tooltip data-placement=bottom title='Entrar a la colección'>" +
                         "<i class='fas " + (collection.is_folder ? 'fa-file':'fa-folder') + "'></i>" +
-                        "</a>" +                        
+                        "</a>" +   
                     "</td>" +
                     "<td><button type='submit' class='btn btn-info' data-toggle='modal' data-target='#modalCollection' data-whatever=" + collection.id + ">Editar <i class='fa fa-pencil-alt'></i></button></td>" +
                     "</tr>"
@@ -232,16 +233,16 @@
                         <div class="col-12 col-sm-12 col-md-12 col-xl-6 col-lg-6">
                             <label for="status">Estado</label>
                             <select class="form-control" id="status" name="status">
-                                <option selected disabled>Seleccione...</option>
+                                <option value="0" selected disabled>Seleccione...</option>
                                 <option value="1">Activo</option>
                                 <option value="0">Inactivo</option>
                             </select>
                         </div>
 
                         <div class="col-12 col-sm-12 col-md-12 col-xl-6 col-lg-6">    
-                            <label for="is_folder">¿Es una carpeta de documentos?</label>
+                            <label for="is_folder">¿Es una carpeta de colecciones?</label>
                             <select class="form-control" name="is_folder" id="is_folder">
-                                <option selected disabled>Seleccione...</option>
+                                <option value="0" selected disabled>Seleccione...</option>
                                 <option value="1">Si.</option>
                                 <option value="0">No.</option>
                             </select>
@@ -249,7 +250,7 @@
                         <div class="col-12 col-sm-12 col-md-12 col-xl-6 col-lg-6"> 
                             <label for="is_public">¿Esta es una colección pública?</label>
                             <select class="form-control" name="is_public" id="is_public">
-                                <option selected disabled>Seleccione...</option>
+                                <option value="0" selected disabled>Seleccione...</option>
                                 <option value="1">Si.</option>
                                 <option value="0">No.</option>
                             </select>

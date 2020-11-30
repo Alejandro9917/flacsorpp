@@ -14,29 +14,37 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        return response()->json(Collection::with('user')->get());
+        return response()->json(Collection::where(['collection_id' => null])->with('user')->get());
     }
 
     public function publicCollections(){
-        return response()->json(Collection::get());
+        return response()->json(Collection::where(['collection_id' => null])->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getChilds($collection_id){
+        return response()->json(Collection::where(['collection_id' => $collection_id])->with('user')->get());
+    }
+
     public function create()
     {
         return view('colecciones/index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function inCollection($collection_slug)
+    {
+        $collection = Collection::where(['slug' => $collection_slug])->first();
+        $id = $collection->id;
+
+        if($collection != null)
+        {
+            return view('colecciones/child')->with('id', $id);
+        }
+
+        else{
+            return view('colecciones/index');
+        }
+    }
+
     public function store(Request $request)
     {
         try{
@@ -49,7 +57,7 @@ class CollectionController extends Controller
                 'is_public' => 'required|boolean',
                 'status' => 'required|boolean',
                 'created_by' => 'required',
-                'published_at' => 'required'
+                'collection_id' => 'numeric'
             ]);
 
             //Final object with data
@@ -63,23 +71,11 @@ class CollectionController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return response()->json(Collection::where(['id' => $id])->first());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
@@ -102,7 +98,8 @@ class CollectionController extends Controller
                 'priority' => 'required|max:255',
                 'is_folder' => 'required|boolean',
                 'is_public' => 'required|boolean',
-                'status' => 'boolean'
+                'status' => 'boolean',
+                'collection_id' => 'numeric'
             ]);
 
             $collection = Collection::where(['id' => $id])->update($data);

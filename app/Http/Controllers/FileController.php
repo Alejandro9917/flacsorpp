@@ -4,28 +4,40 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+use App\Models\Collection;
 use App\Models\File;
 
 class FileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return response()->json(File::with('user')->get());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('files.index');
+    }
+
+    public function getChilds($collection_id){
+        return response()->json(File::where(['collection_id' => $collection_id])->with('user')->get());
+    }
+
+    public function inCollection($collection_slug)
+    {
+        $collection = Collection::where(['slug' => $collection_slug])->first();
+        $id = $collection->id;
+
+        if($collection != null)
+        {
+            return view('files/child')->with('collection_id', $id);
+        }
+
+        else{
+            return view('colecciones/index');
+        }
     }
 
     public function store(Request $request)
@@ -34,15 +46,26 @@ class FileController extends Controller
             //Validating recived data
             $data = $request->validate([
                 'name' => 'required|max:255',
-                'type' => 'required|max:255',
+                'document' => 'required|file',
                 'status' => 'required|max:255',
                 'created_by' => 'required',
-                'collection_id' => 'required'
+                'collection_id' => 'required',
+                'published_at' => 'required|date'
             ]);
+            
+            $path = Storage::putFile('documents', $request->file('document'));
 
-            //Final object with data
-            $file = File::create($data);
-            return response()->json($file);
+            $file = new File();
+            $file->name = $request->name;
+            $file->file = $path;
+            $file->status = $request->status;
+            $file->created_by = $request->created_by;
+            $file->collection_id = $request->collection_id;
+            $file->published_at = $request->published_at;
+
+            if($file->save()){
+                return response()->json(['message' => 'Archivo creado']);
+            }
         }
 
         catch(Exception $ex){
@@ -73,7 +96,8 @@ class FileController extends Controller
             $data = $request->validate([
                 'name' => 'required|max:255',
                 'type' => 'required|max:255',
-                'status' => 'required|max:255'
+                'status' => 'required|max:255',
+                'published_at' => 'required|date'
             ]);
 
             $file = File::where(['id' => $id])->update($data);

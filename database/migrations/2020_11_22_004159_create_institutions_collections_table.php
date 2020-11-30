@@ -15,7 +15,7 @@ class CreateInstitutionsCollectionsTable extends Migration
     {
         Schema::create('institutions_collections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('collection_id')->constrained();
+            $table->foreignId('file_id')->constrained();
             $table->foreignId('institution_id')->constrained();
             $table->timestamps();
         });

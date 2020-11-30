@@ -12,7 +12,7 @@ class File extends Model
     protected $table = 'files';
 
     protected $fillable = [
-        'name', 'type', 'status', 'created_by', 'collection_id',
+        'name', 'file', 'status', 'created_by', 'collection_id', 'published_at'
     ];
 
     //Relación con Authors
