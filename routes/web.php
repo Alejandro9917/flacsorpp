@@ -68,10 +68,12 @@ Route::resource('/citation', CitationController::class)->except([
 ])->middleware('auth');
 Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsFile']);
 
-//Route for collection controller
-Route::resource('/collection', CollectionController::class)->except([
-    'edit', 'destroy'
-])->middleware('auth');
+//Route for collection 
+Route::group(['middleware' => ['needs_role']], function () {
+    Route::resource('/collection', CollectionController::class)->except([
+        'edit', 'destroy'
+    ]);
+});
 Route::middleware('auth')->group(function(){
     Route::get('/collection/in/{collection_slug}', [CollectionController::class, 'inCollection']);
     Route::get('/collection/childs/{collection_id}', [CollectionController::class, 'getChilds']);
@@ -100,3 +102,5 @@ Route::resource('/module', ModuleController::class);
 Route::resource('/user', UserController::class);
 Route::get('/role/{id}/permisos', [RoleController::class, 'permisos']);
 Route::post('/role/{id}/actualizar_permisos', [RoleController::class, 'actualizar_permisos']);
+
+

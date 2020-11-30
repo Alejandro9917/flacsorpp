@@ -18,12 +18,13 @@ class Role extends Model
     //Relación con Permisons
     public function permisons()
     {
-        return $this->hasMany(Permison::class, 'id');
+        //! TODO: Encontré que esta relacion estaba la llave local y debe de ser la clave externa
+        return $this->hasMany(Permison::class, 'role_id');
     }
 
     //Relación con Users
     public function users()
     {
-        return $this->hasMany(User::class, 'id');
+        return $this->hasMany(User::class, 'role_id');
     }
 }
