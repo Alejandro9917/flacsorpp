@@ -14,7 +14,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return Author::get();
+        //Return the Authors in json format
+        return response()->json(Author::get());
     }
 
     /**
@@ -36,18 +37,26 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'first_name' => 'required|max:255',
-            'second_name' => 'required|max:255',
-            'first_lastname' => 'required|max:255',
-            'second_lastname' => 'required|max:255',
-            'birthday' => 'required|date',
-            'email' => 'required|email|max:255'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'first_name' => 'required|max:255',
+                'second_name' => 'required|max:255',
+                'first_lastname' => 'required|max:255',
+                'second_lastname' => 'required|max:255',
+                'birthday' => 'required|date',
+                'email' => 'required|email|max:255'
+            ]);
 
-        //Final object with data
-        $author = Auhtor::create($data);
+            //Final object with data
+            $author = Author::create($data);
+            return response()->json($author);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**
@@ -58,7 +67,7 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Author::where(['id' => $id])->first());
     }
 
     /**
@@ -81,17 +90,25 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating recived data
-        $data = $request->validate([
-            'first_name' => 'required|max:255',
-            'second_name' => 'required|max:255',
-            'first_lastname' => 'required|max:255',
-            'second_lastname' => 'required|max:255',
-            'birthday' => 'required|date',
-            'email' => 'required|email|max:255'
-        ]);
+        try{
+            //Validating recived data
+            $data = $request->validate([
+                'first_name' => 'required|max:255',
+                'second_name' => 'required|max:255',
+                'first_lastname' => 'required|max:255',
+                'second_lastname' => 'required|max:255',
+                'birthday' => 'required|date',
+                'email' => 'required|email|max:255'
+            ]);
 
-        $author = Author::where(['id' => $id])->update($data);
+            $author = Author::where(['id' => $id])->update($data);
+            return response()->json($author);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**

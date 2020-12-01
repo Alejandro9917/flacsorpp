@@ -39,7 +39,7 @@ class TagController extends Controller
         try{
             //Validating received data
             $data = $request->validate([
-                'cod_tag' => 'required|alpha_num|max:250',
+                'cod_tag' => 'required|alpha_dash|max:250',
                 'name' => 'required|alpha_num|max:250',
                 'color' => 'required|alpha_num|max:250'
             ]);
@@ -63,7 +63,7 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Tag::where(['id' => $id])->get());
+        return response()->json(Tag::where(['id' => $id])->first());
     }
 
     /**
@@ -86,15 +86,23 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Validating received data
-        $data = $request->validate([
-            'cod_tag' => 'required|alpha_num|max:250',
-            'name' => 'required|alpha_num|max:250',
-            'color' => 'required|alpha_num|max:250'
-        ]);
+        try{
+            //Validating received data
+            $data = $request->validate([
+                'cod_tag' => 'required|alpha_dash|max:250',
+                'name' => 'required|alpha_num|max:250',
+                'color' => 'required|alpha_num|max:250'
+            ]);
 
-        //Final object with data
-        $tag = Tag::where(['id' => $id])->update($data);
+            //Final object with data
+            $tag = Tag::where(['id' => $id])->update($data);
+            return response()->json($tag);
+        }
+
+        catch(Exception $ex){
+            $error = array(['error' => 'No se ha podido completar'.$ex]);
+            return response()->json($error);
+        }
     }
 
     /**

@@ -24,12 +24,6 @@ class UserController extends Controller
         );
     }
 
-    //Función para mostrar el login
-    public function login()
-    {
-        return view('layout.login');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -92,12 +86,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        /*$user = User::find($id);
         return view('user.show')->with(
             array(
                 'user' => $user
             )
-        );
+        );*/
+        return response()->json(User::where(['id' => $id])->first());
     }
 
     /**

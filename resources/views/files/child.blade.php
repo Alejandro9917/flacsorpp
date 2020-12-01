@@ -18,10 +18,9 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Tipo de documento</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Creado por</th>
-                            <th scope="col">Modificado</th>
+                            <th scope="col">Publicado</th>
                             <th scope="col">Vincular</th>
                             <th scope="col">Opciones</th>
                         </tr>
@@ -90,7 +89,7 @@
                 update(id);
             }
 
-            var table = $("#table_file tbody").empty();
+            $("#table_file tbody").empty();
 
             clearErrors();
             getFiles();
@@ -100,7 +99,7 @@
         function linkUpTag(tag_id){
             file_id = $("#modalTag").attr('data-whatever');
 
-            $.ajax({
+            $.ajax({            
                 url: "http://127.0.0.1:8000/files/tags",
                 method: 'POST',
                 data: {
@@ -122,7 +121,7 @@
         function unlinkTag(tag_id){
             file_id = $("#modalTag").attr('data-whatever');
 
-            $.ajax({
+            $.ajax({            
                 url: "http://127.0.0.1:8000/files/tags/delete",
                 method: 'POST',
                 data: {
@@ -146,7 +145,7 @@
 
         function getFiles(){
             $.ajax({
-                url: "http://127.0.0.1:8000/file",
+                url: "http://127.0.0.1:8000/file/childs/" + {{ $collection_id }},
                 method: "GET",
                 error: function(res){
                     var response = res;
@@ -206,36 +205,46 @@
         }
 
         function send(){
-            $.ajax({
-                url: "{{ url('file') }}",
+            var formData = new FormData();
+            formData.append('name', $("#name").val());
+            formData.append('document', $("#document").prop('files')[0]);
+            formData.append('status', $("#status").val());
+            formData.append('published_at', $("#published_at").val());
+            formData.append('created_by', {{ Auth::user()->id }});
+            formData.append('collection_id', {{ $collection_id }});
+
+            $.ajaxSetup({
+                headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+            });
+
+            $.ajax({            
+                url: "http://127.0.0.1:8000/file",
                 method: 'POST',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    name: $("#name").val(),
-                    type: $("#type").val(),
-                    status: $("#status").val(),
-                    created_by: {{ Auth::user()->id }},
-                    collection_id: 1
-                },
+                data: formData,     
+                processData: false,
+                contentType: false,           
                 success: function(res){
                     var response = res;
+                    console.log(response);
                 },
                 error: function(res){
                     var response = res;
-                    setErrors(response.responseJSON.errors);
+                    console.log(res)
+                    //setErrors(response.responseJSON.errors);
                 }
             });
         }
 
         function update(id){
-            $.ajax({
+            $.ajax({            
                 url: "http://127.0.0.1:8000/file/" + id,
                 method: 'PUT',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     name: $("#name").val(),
                     type: $("#type").val(),
-                    status: $("#status").val()
+                    status: $("#status").val(),
+                    published_at: $("#published_at").val(),
                 },
                 success: function(res){
                     var response = res;
@@ -254,15 +263,15 @@
                     "<th scope='row'>" + file.id + "</th>" +
                     "<td>" + file.name + "</td>" +
                     "<td>" + file.type + "</td>" +
-                    "<td>" + (file.status ? "Activo" : "Inactivo") + "</td>" +
+                    "<td>" + (file.status ? "Activo":"Inactivo") + "</td>" +
                     "<td>" + file.user.name + "</td>" +
-                    "<td>" + file.updated_at + "</td>" +
+                    "<td>" + file.published_at + "</td>" +
                     "<td>"+
                     "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-toggle='tooltip' data-placement='bottom' title='Vincular Autores'>" +
                         "<i class='fas fa-address-book' data-toggle='modal' data-target='#modalAuthor'></i></button>" +
-                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" +
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" + 
                         "<i class='fas fa-calendar-plus'></i></button>" +
-                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" +
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" + 
                         "<i class='fas fa-clipboard'></i></button>" +
                     "</td>" +
                     "<td><button type='submit' class='btn btn-warning' data-toggle='modal' data-target='#modalFile' data-whatever=" + file.id + "><i class='fas fa-pencil-alt'></i> Editar</button></td>" +
@@ -297,7 +306,7 @@
                     "<td><button onClick='linkUpTag(" + tag.id + ")' type='submit' class='btn bg-success' data-file=" + tag.id + "><i class='far fa-check-circle'></i></button></td>" +
                     "</tr>"
                 );
-            });
+            }); 
         }
 
         function printTagsFile(tags){
@@ -311,7 +320,7 @@
                     "<td><button onClick='unlinkTag(" + tag.id + ")' type='submit' class='btn bg-danger' data-dismiss='modal' data-tag=" + tag.id + "><i class='text-white far fa-trash-alt'></i></button></td>" +
                     "</tr>"
                 );
-            });
+            }); 
         }
 
         function set(file){
@@ -354,18 +363,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formFile" action="">
+                <form id="formFile" action="" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input class="form-control" type="text" name="name" id="name" placeholder="Nombre del documento">
 
-
                         <label for="type">Tipo de documento</label>
                         <input class="form-control" type="text" name="type" id="type" placeholder="Tipo de documento">
 
+                        <label for="published_at">Publicado en: </label>
+                        <input class="form-control" type="date" name="published_at" id="published_at">
 
                         <label for="status">Estado</label>
-                        <input class="form-control" type="text" name="status" id="status" placeholder="Estado">
+                        <select class="form-control" id="status" name="status">
+                            <option value="0" selected disabled>Seleccione...</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+
+                        <label for="document">Documento</label>
+                        <input type="file" class="form-control-file" id="document" name="document">
                     </div>
 
                     <a id="send" type="submit" class="btn btn-success float-right" data-whatever="null"><i class="fas fa-cloud-upload-alt"></i>Guardar</a>

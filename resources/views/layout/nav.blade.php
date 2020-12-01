@@ -17,19 +17,16 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header text-center">
-            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mantia/128.jpg" class="img-circle mt-1">
-            <h5 class="mt-3">User Name</h5>
+            <img src="" class="img-circle mt-1">
+            <h5 class="mt-3">{{ Auth::user()->first_name }} {{ Auth::user()->first_lastname }}</h5>
         </div>
 
         <ul class="list-unstyled components">
             <li>
                 <a href="#">Repositorio</a>
             </li>
-            <li>
-                <a href="#">Comunidades</a>
-            </li>
-            <li>
-                <a href="#">Colecciones</a>
+            <li class="{{setActive('collection.create')}}">
+                <a href="/collection/create">Comunidades</a>
             </li>
             <li class="{{setActive('file.create')}}">
                 <a href="/file/create">Documentos</a>
@@ -54,6 +51,12 @@
             </li>
             <li>
                 <a href="#">Roles</a>
+            </li>
+            <li>
+                <a href="/meta-data">Meta Data</a>
+            </li>
+            <li>
+                <a href="/logout">Cerrar sesión</a>
             </li>
         </ul>
     </nav>

@@ -12,7 +12,7 @@ class File extends Model
     protected $table = 'files';
 
     protected $fillable = [
-        'name', 'type', 'status', 'created_by', 'collection_id',
+        'name', 'file', 'status', 'created_by', 'collection_id', 'published_at'
     ];
 
     //Relación con Authors
@@ -22,7 +22,7 @@ class File extends Model
 
     //Relación con Citations
     public function citations(){
-        return $this->hasMan(Citation::class);
+        return $this->hasMany(Citation::class);
     }
 
     //Relacion con Collection
@@ -32,7 +32,7 @@ class File extends Model
 
     //Relación con Tags
     public function tags(){
-        return $this->belongsToMany(Tags::class, 'file_tags', 'file_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'file_tags', 'file_id', 'tag_id');
     }
 
     //Relacion con Users

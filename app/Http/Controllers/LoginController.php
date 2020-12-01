@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class MetadataController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,31 @@ class MetadataController extends Controller
      */
     public function index()
     {
-        return 'Página de metadata';
+        //Return view of login
+        return view('layout.login');
+    }
+
+    /**
+     * Method for authenticate user
+     */
+
+    public function authenticate(Request $request){
+        $credentials = $request->only('name', 'password');
+
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
+            // Authentication passed...
+            return redirect()->intended('/tag/create');
+        }
+    }
+
+    /** 
+     * Method for logout
+    */
+
+    public function logout(){
+        Auth::logout();
+
+        return redirect()->intended('/');
     }
 
     /**
@@ -23,8 +48,7 @@ class MetadataController extends Controller
      */
     public function create()
     {
-        // retornando la pagina del index de meta DATA
-        return view('metadata.index');
+        //
     }
 
     /**
