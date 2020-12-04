@@ -29,6 +29,7 @@
                             <td>Testing form name</td>
                             <td>
                                 <button type="submit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                <a href="{{route('campos-add')}}" class="btn btn-success"><i class="fas fa-link"></i> Campos</a>
                             </td>
                         </tr>
                         </tbody>

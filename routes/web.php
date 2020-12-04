@@ -41,12 +41,13 @@ Route::get('/file', [FileController::class, 'index']);
 
 //Rutas para el componente de datos(meta data)
 Route::get('/meta-data', [MetadataController::class, 'create']);
+Route::get('/campos-form', function () {
+    return view('metadata.campos');
+})->name('campos-add');
 
 //Rutas para el componente de home
 Route::get('/home', [HomeController::class, 'index']);
 
-//Rutas para el componente de la metadata
-Route::get('/metadata', [MetadataController::class, 'index']);
 
 //Rutas para el componente de búsqueda
 Route::get('/search', [SearchController::class, 'index']);
