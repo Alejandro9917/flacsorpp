@@ -4,35 +4,41 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Citation;
+use App\Models\File;
 
 class CitationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return response()->json(Citation::get());
     }
-    
-    /*
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function getChilds($file_id)
+    {
+        return response()->json(Citation::where(['file_id' => $file_id])->get());
+    }
+
+    public function inFile($file_id)
+    {
+        $file = File::where(['id' => $file_id])->first();
+        $id = $file->id;
+
+        if($file != null)
+        {
+            return view('citaciones/child')->with('file_id', $id);
+        }
+
+        else{
+            return view('files/index');
+        }
+    }
+
     public function create()
     {
         // Retornando la vista Idndex del recurso de citaciones
         return view('citaciones.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         try{

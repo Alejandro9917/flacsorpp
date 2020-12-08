@@ -230,7 +230,7 @@
                 error: function(res){
                     var response = res;
                     console.log(res)
-                    //setErrors(response.responseJSON.errors);
+                    setErrors(response.responseJSON.errors);
                 }
             });
         }
@@ -269,8 +269,8 @@
                     "<td>"+
                     "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-toggle='tooltip' data-placement='bottom' title='Vincular Autores'>" +
                         "<i class='fas fa-address-book' data-toggle='modal' data-target='#modalAuthor'></i></button>" +
-                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" + 
-                        "<i class='fas fa-calendar-plus'></i></button>" +
+                    "<a href='http://127.0.0.1:8000/citation/in/" + file.id +"' type='submit' class='btn btn-warning' title='Vincular Citaciones'>" + 
+                        "<i class='fas fa-calendar-plus'></i></a>" +
                     "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" + 
                         "<i class='fas fa-clipboard'></i></button>" +
                     "</td>" +

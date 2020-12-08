@@ -66,15 +66,20 @@ Route::resource('/author', AuthorController::class)->except([
 Route::resource('/citation', CitationController::class)->except([
     'show', 'edit', 'destroy'
 ])->middleware('auth');
+Route::get('citation/in/{file_id}', [CitationController::class, 'inFile']);
+Route::get('citation/childs/{file_id}', [CitationController::class, 'getChilds']);
 Route::get('citation/file/{file_id}', [CitationController::class, 'getCitationsFile']);
 
 //Route for collection 
-Route::group(['middleware' => ['needs_role']], function () {
+/*Route::group(['middleware' => ['needs_role']], function () {
     Route::resource('/collection', CollectionController::class)->except([
         'edit', 'destroy'
     ]);
-});
+});*/
 Route::middleware('auth')->group(function(){
+    Route::resource('/collection', CollectionController::class)->except([
+        'edit', 'destroy'
+    ]);
     Route::get('/collection/in/{collection_slug}', [CollectionController::class, 'inCollection']);
     Route::get('/collection/childs/{collection_id}', [CollectionController::class, 'getChilds']);
 });
