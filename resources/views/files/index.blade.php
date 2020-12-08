@@ -100,7 +100,7 @@
         function linkUpTag(tag_id){
             file_id = $("#modalTag").attr('data-whatever');
 
-            $.ajax({            
+            $.ajax({
                 url: "http://127.0.0.1:8000/files/tags",
                 method: 'POST',
                 data: {
@@ -122,7 +122,7 @@
         function unlinkTag(tag_id){
             file_id = $("#modalTag").attr('data-whatever');
 
-            $.ajax({            
+            $.ajax({
                 url: "http://127.0.0.1:8000/files/tags/delete",
                 method: 'POST',
                 data: {
@@ -206,7 +206,7 @@
         }
 
         function send(){
-            $.ajax({            
+            $.ajax({
                 url: "{{ url('file') }}",
                 method: 'POST',
                 data: {
@@ -228,7 +228,7 @@
         }
 
         function update(id){
-            $.ajax({            
+            $.ajax({
                 url: "http://127.0.0.1:8000/file/" + id,
                 method: 'PUT',
                 data: {
@@ -260,9 +260,9 @@
                     "<td>"+
                     "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-toggle='tooltip' data-placement='bottom' title='Vincular Autores'>" +
                         "<i class='fas fa-address-book' data-toggle='modal' data-target='#modalAuthor'></i></button>" +
-                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" + 
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Citaciones' data-toggle='modal' data-target='#modalCitation'>" +
                         "<i class='fas fa-calendar-plus'></i></button>" +
-                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" + 
+                    "<button type='submit' data-file=" + file.id + " class='btn btn-warning' data-placement='bottom' title='Vincular Tags' data-toggle='modal' data-target='#modalTag'>" +
                         "<i class='fas fa-clipboard'></i></button>" +
                     "</td>" +
                     "<td><button type='submit' class='btn btn-warning' data-toggle='modal' data-target='#modalFile' data-whatever=" + file.id + "><i class='fas fa-pencil-alt'></i> Editar</button></td>" +
@@ -297,7 +297,7 @@
                     "<td><button onClick='linkUpTag(" + tag.id + ")' type='submit' class='btn bg-success' data-file=" + tag.id + "><i class='far fa-check-circle'></i></button></td>" +
                     "</tr>"
                 );
-            }); 
+            });
         }
 
         function printTagsFile(tags){
@@ -311,7 +311,7 @@
                     "<td><button onClick='unlinkTag(" + tag.id + ")' type='submit' class='btn bg-danger' data-dismiss='modal' data-tag=" + tag.id + "><i class='text-white far fa-trash-alt'></i></button></td>" +
                     "</tr>"
                 );
-            }); 
+            });
         }
 
         function set(file){

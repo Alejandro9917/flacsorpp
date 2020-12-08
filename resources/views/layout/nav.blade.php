@@ -52,6 +52,9 @@
             <li>
                 <a href="#">Roles</a>
             </li>
+            <li class="{{setActive('')}}">
+                <a href="/meta-data" >Meta Data</a>
+            </li>
             <li>
                 <a href="/logout">Cerrar sesión</a>
             </li>

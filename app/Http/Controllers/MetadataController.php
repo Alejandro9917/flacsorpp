@@ -23,7 +23,8 @@ class MetadataController extends Controller
      */
     public function create()
     {
-        //
+        // retornando la pagina del index de meta DATA
+        return view('metadata.index');
     }
 
     /**

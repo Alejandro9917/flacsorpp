@@ -39,11 +39,15 @@ Route::get('/community', [CommunityController::class, 'index']);
 //Rutas para el componente de archivos
 Route::get('/file', [FileController::class, 'index']);
 
+//Rutas para el componente de datos(meta data)
+Route::get('/meta-data', [MetadataController::class, 'create']);
+Route::get('/campos-form', function () {
+    return view('metadata.campos');
+})->name('campos-add');
+
 //Rutas para el componente de home
 Route::get('/home', [HomeController::class, 'index']);
 
-//Rutas para el componente de la metadata
-Route::get('/metadata', [MetadataController::class, 'index']);
 
 //Rutas para el componente de búsqueda
 Route::get('/search', [SearchController::class, 'index']);
@@ -53,11 +57,11 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::get('/logout', [LoginController::class, 'logout']);
 
-//Rutas públicas para la api 
+//Rutas públicas para la api
 Route::get('/public/collection', [CollectionController::class, 'publicCollections']);
 
 //Private route
-//Route for author controller 
+//Route for author controller
 Route::resource('/author', AuthorController::class)->except([
     'edit', 'destroy'
 ])->middleware('auth');
