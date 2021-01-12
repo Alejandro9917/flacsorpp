@@ -49,7 +49,7 @@
             });
 
             $("#name").keyup(function(e){
-                $("#slug").val($("#name").val().toLowerCase().replace(/ /gi, "-"));
+                $("#slug").val($("#name").val().toLowerCase().replace(/ /gi, "-") + "-" + {{ $id }});
             });
 
             getCollections();
@@ -102,10 +102,10 @@
                     _token: $('meta[name="csrf-token"]').attr('content'),
                     name: $("#name").val(),
                     slug: $("#slug").val(),
-                    priority: $("#priority").val(),
-                    is_folder: $("#is_folder").val(),
-                    is_public: $("#is_public").val(),
-                    status: $("#status").val(),
+                    priority: /*$("#priority").val()*/1,
+                    is_folder: /*$("#is_folder").val()*/0,
+                    is_public: /*$("#is_public").val()*/1,
+                    status: /*$("#status").val()*/1,
                     created_by: {{ Auth::user()->id }},
                     collection_id: {{ $id }}
                 },

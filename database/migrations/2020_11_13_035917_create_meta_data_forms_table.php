@@ -24,7 +24,7 @@ class CreateMetaDataFormsTable extends Migration
             $table->string('extra_js');
             $table->string('extra_css');
             $table->boolean('is_required');
-            $table->foreignId('file_type_id')->constrained();
+            //$table->foreignId('file_type_id')->constrained();
             $table->timestamps();
         });
     }

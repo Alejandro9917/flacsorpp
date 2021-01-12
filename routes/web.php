@@ -39,12 +39,6 @@ Route::get('/community', [CommunityController::class, 'index']);
 //Rutas para el componente de archivos
 Route::get('/file', [FileController::class, 'index']);
 
-//Rutas para el componente de datos(meta data)
-Route::get('/meta-data', [MetadataController::class, 'create']);
-Route::get('/campos-form', function () {
-    return view('metadata.campos');
-})->name('campos-add');
-
 //Rutas para el componente de home
 Route::get('/home', [HomeController::class, 'index']);
 
@@ -99,6 +93,17 @@ Route::middleware('auth')->group(function(){
     Route::get('file/in/{collection_slug}', [FileController::class, 'inCollection']);
     Route::get('file/childs/{collection_id}', [FileController::class, 'getChilds']);
 });
+
+//Route for metadata controller
+Route::resource('/metadata', MetadataController::class)->except([
+    'edit', 'destroy'
+])->middleware('auth');
+
+//Rutas para el componente de datos(meta data)
+/*Route::get('/meta-data', [MetadataController::class, 'create']);
+Route::get('/campos-form', function () {
+    return view('metadata.campos');
+})->name('campos-add');*/
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([

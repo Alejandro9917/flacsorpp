@@ -7,14 +7,14 @@
                 <input type="search" class="form-control" placeholder="Buscar...">
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                <button type="submit" class="btn btn-info btn-tags" data-toggle="modal" data-target="#modalForm"><i
+                <button type="submit" class="btn btn-info btn-tags" data-toggle="modal" data-target="#modalMetadata"><i
                         class="fas fa-file-alt"></i> Crear Meta data
                 </button>
             </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-5">
                 <div class="table-responsive-md ">
-                    <table id="table_tag" class="table bg-success table-active table-hover">
+                    <table id="table_metadata" class="table bg-success table-active table-hover">
                         <caption>List of Data</caption>
                         <thead>
                         <tr>
@@ -28,8 +28,8 @@
                             <td>1</td>
                             <td>Testing form name</td>
                             <td>
-                                <button type="submit" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Editar</button>
-                                <a href="{{route('campos-add')}}" class="btn btn-success"><i class="fas fa-link"></i> Campos</a>
+                                <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalMetadata"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                <a href="" class="btn btn-success"><i class="fas fa-link"></i> Campos</a>
                             </td>
                         </tr>
                         </tbody>
@@ -41,24 +41,130 @@
 
     </div>
 
+    <script>
+        $(document).ready(function(){
+            getMetadatas();
+
+            $('#modalMetadata').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('whatever');
+
+                getMetadata(id);
+            });
+
+            $('#modalAuthor').on('hiden.bs.modal', function (event) {
+                clear();
+            });
+        });
+
+        $("#send").click(function(){
+            var id = $("#send").attr('data-whatever');
+
+            if(id == "null"){
+                sendMetadata();
+            }
+
+            else{
+                updateMetadata(id);
+            }
+        });
+
+        function getMetadatas(){
+            $.ajax({
+                url: "http://127.0.0.1:8000/metadata",
+                method: "GET"
+            }).done(function(res){
+                print(res);
+            });
+        }
+
+        function getMetadata(id){
+            $.ajax({
+                url: "http://127.0.0.1:8000/metadata/" + id,
+                method: "GET"
+            }).done(function(res){
+                set(res);
+            });
+        }
+
+        function sendMetadata(){
+            $.ajax({
+                url: "http://127.0.0.1:8000/metadata",
+                method: 'POST',
+                data: $("#form_metadata").serialize(),
+                success: function(res){
+                    console.log(res);
+                },
+                error: function(res){
+                    console.log(res);
+                    //setErrors(res.responseJSON.errors);
+                }
+            });
+        }
+
+        function updateMetadata(id){
+
+        }
+
+        function print(metadatas){
+            metadatas.map(function(metadata){
+                $('#table_metadata').append(
+                    "<tr>" +
+                    "<td scope='row'>" + metadata.id + "</td>" +
+                    "<td>" + metadata.form_name + "</td>" +
+                    "<td>" +
+                    "<button type='submit' class='btn btn-warning' data-toggle='modal' data-target='#modalMetadata' data-whatever=" + metadata.id + "><i class='fas fa-pencil-alt'></i> Editar</button>" +
+                    "<a href='' class='btn btn-success'><i class='fas fa-link'></i>Campos</a>" +
+                    "</td>" +
+                    "</tr>"
+                );
+            });
+        }
+
+        function set(metadata){
+            $('#form_name').val(metadata.form_name);
+            $('#header').val(metadata.header);
+            $('#priority').val(metadata.priority);
+            $('#class_container').val(metadata.class_container);
+            $('#is_accordion').val(metadata.is_accordion);
+            $('#is_collapsed').val(metadata.is_collapsed);
+            $('#extra_js').val(metadata.extra_js);
+            $('#extra_css').val(metadata.extra_css);
+            $('#is_required').val(metadata.is_required);
+            $("#send").attr('data-whatever', metadata.id);
+        }
+
+        function clear(){
+            $('#form_name').val("");
+            $('#header').val("");
+            $('#priority').val("");
+            $('#class_container').val("");
+            $('#is_accordion').val("");
+            $('#is_collapsed').val("");
+            $('#extra_js').val("");
+            $('#extra_css').val("");
+            $('#is_required').val("");
+            $("#send").attr('data-whatever', "null");
+        }
+    </script>
+
 @endsection
 
 
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade shadow-sm" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalTagTitl"
-     aria-hidden="true">
+<div class="modal fade shadow-sm" id="modalMetadata" tabindex="-1" role="dialog" aria-labelledby="modalMetadataTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTagTitle">Registro de Formularios</h5>
+                <h5 class="modal-title" id="modalMetadataTitle">Registro de Formularios</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form_tag" action="">
+                <form id="form_metadata" action="">
                     {{ csrf_field() }}
 
                     <div class="form-row">
@@ -89,7 +195,7 @@
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="is_accordion">Es desplegabe</label>
-                            <select name="is_accordion" id="is_accrodion" class="form-control">
+                            <select name="is_accordion" id="is_accordion" class="form-control">
                                 <option value="1">Si</option>
                                 <option value="0">No</option>
                             </select>
@@ -123,20 +229,13 @@
                                 <option value="0">No</option>
                             </select>
                         </div>
-                        <div class="form-group col">
-                            <label for="file_type_id">Id del archivo</label>
-                            <select name="file_type_id" id="file_type_id" class="form-control">
-                                <option value="1">Si</option>
-                                <option value="0">No</option>
-                            </select>
-                        </div>
                     </div>
                     <a type="submit" id="send" class="btn btn-success float-right" data-whatever="null"><i
                             class="fas fa-cloud-upload-alt"></i> Guardar</a>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times-circle"></i>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-whatever="null"><i class="fas fa-times-circle"></i>
                     Cerrar
                 </button>
             </div>
