@@ -1,5 +1,5 @@
 @extends('partials.app')
-
+<?php $APP_DOMAIN = URL::to('/'); ?>
 @section('content')
     <div class="container">
         <div class="row">
@@ -24,14 +24,7 @@
                         </tr>
                         </thead>
                         <tbody class="bg-light">
-                        <tr>
-                            <td>1</td>
-                            <td>Testing form name</td>
-                            <td>
-                                <button type="submit" class="btn btn-warning" data-toggle="modal" data-target="#modalMetadata"><i class="fas fa-pencil-alt"></i> Editar</button>
-                                <a href="" class="btn btn-success"><i class="fas fa-link"></i> Campos</a>
-                            </td>
-                        </tr>
+                        
                         </tbody>
                     </table>
                 </div>
@@ -71,7 +64,7 @@
 
         function getMetadatas(){
             $.ajax({
-                url: "http://127.0.0.1:8000/metadata",
+                url: "{{ $APP_DOMAIN }}/metadata",
                 method: "GET"
             }).done(function(res){
                 print(res);
@@ -80,7 +73,7 @@
 
         function getMetadata(id){
             $.ajax({
-                url: "http://127.0.0.1:8000/metadata/" + id,
+                url: "{{ $APP_DOMAIN }}/metadata/" + id,
                 method: "GET"
             }).done(function(res){
                 set(res);
@@ -89,7 +82,7 @@
 
         function sendMetadata(){
             $.ajax({
-                url: "http://127.0.0.1:8000/metadata",
+                url: "{{ $APP_DOMAIN }}/metadata",
                 method: 'POST',
                 data: $("#form_metadata").serialize(),
                 success: function(res){
@@ -114,7 +107,7 @@
                     "<td>" + metadata.form_name + "</td>" +
                     "<td>" +
                     "<button type='submit' class='btn btn-warning' data-toggle='modal' data-target='#modalMetadata' data-whatever=" + metadata.id + "><i class='fas fa-pencil-alt'></i> Editar</button>" +
-                    "<a href='' class='btn btn-success'><i class='fas fa-link'></i>Campos</a>" +
+                    "<a href='/public/metadata/"+metadata.id+"/fields' class='btn btn-success'><i class='fas fa-link'></i>Campos</a>" +
                     "</td>" +
                     "</tr>"
                 );

@@ -1,4 +1,5 @@
 @extends('partials.app')
+<?php $APP_DOMAIN = URL::to('/'); ?>
 
 @section('content')
     <div class="container">
@@ -74,7 +75,7 @@
 
         function getCollections(){
             $.ajax({
-                url: "http://127.0.0.1:8000/collection",
+                url: "<?php echo $APP_DOMAIN; ?>/collection",
                 method: "GET"
 
             }).done(function(res){
@@ -85,7 +86,7 @@
 
         function getCollection(id){
             $.ajax({
-                url: "http://127.0.0.1:8000/collection/" + id,
+                url: "<?php echo $APP_DOMAIN; ?>/collection/" + id,
                 method: "GET"
             }).done(function(res){
                     var response = res;
@@ -96,7 +97,7 @@
         function send(){
             var now = new Date();
             $.ajax({            
-                url: "http://127.0.0.1:8000/collection/",
+                url: "<?php echo $APP_DOMAIN; ?>/collection", //If ends with a slash will catch as mixed content
                 method: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -120,7 +121,7 @@
 
         function update(id){
             $.ajax({            
-                url: "http://127.0.0.1:8000/collection/" + id,
+                url: "<?php echo $APP_DOMAIN; ?>/collection/" + id,
                 method: 'PUT',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -151,7 +152,7 @@
                     "<td>" + collection.user.name + "</td>" +
                     "<td>" + (collection.status ? "Activo" : "Inactivo") + "</td>" +
                     "<td>" +
-                        "<a href='http://127.0.0.1:8000/" + (collection.is_folder ? 'file':'collection') + "/in/" + collection.slug + "' " +
+                        "<a href='<?php echo $APP_DOMAIN; ?>/" + (collection.is_folder ? 'file':'collection') + "/in/" + collection.slug + "' " +
                         "class='btn btn-warning' data-toggle=tooltip data-placement=bottom title='Entrar a la colección'>" +
                         "<i class='fas " + (collection.is_folder ? 'fa-file':'fa-folder') + "'></i>" +
                         "</a>" +                        

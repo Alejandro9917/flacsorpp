@@ -99,11 +99,18 @@ Route::resource('/metadata', MetadataController::class)->except([
     'edit', 'destroy'
 ])->middleware('auth');
 
+// ----------------------------------------------------------------------------------------------------------
+
 //Rutas para el componente de datos(meta data)
-/*Route::get('/meta-data', [MetadataController::class, 'create']);
-Route::get('/campos-form', function () {
+// Route::get('/meta-data', [MetadataController::class, 'create']);
+/* Route::get('/metadata/{id}/fields', function () {
     return view('metadata.campos');
-})->name('campos-add');*/
+})->name('campos-add'); /** */
+Route::get('/metadata/{id}/fields', [MetadataController::class, 'display_fields']);
+Route::get('metadata/detail/{metadata_id}', [MetadataController::class, 'print_fields']);
+Route::get('metadata/store_field', [MetadataController::class, 'store_field']);
+
+// ----------------------------------------------------------------------------------------------------------
 
 //Route for tag controller
 Route::resource('/tag', TagController::class)->except([

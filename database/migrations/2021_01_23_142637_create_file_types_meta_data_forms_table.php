@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFileMetaData extends Migration
+class CreateFileTypesMetaDataFormsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateFileMetaData extends Migration
      */
     public function up()
     {
-        Schema::create('file_meta_data', function (Blueprint $table) {
+        Schema::create('file_types_metadata_forms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('file_id')->constrained();
-            $table->foreignId('meta_data_id')->constrained();
+            $table->foreignId('file_type_id')->constrained();
+            $table->foreignId('meta_data_forms_id')->constrained();
+            $table->boolean('visible'); // if is archived
+
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateFileMetaData extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_meta_data');
+        Schema::dropIfExists('file_types_metadata_forms');
     }
 }

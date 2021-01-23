@@ -16,4 +16,8 @@ class Metadata extends Model
         'is_accordion', 'is_collapsed', 'extra_js', 'extra_css',
         'is_required'
     ];
+
+    public function fields(){
+        return $this->hasMany(Fields::class);
+    }
 }

@@ -1,4 +1,5 @@
 @extends('partials.app')
+<?php $APP_DOMAIN = URL::to('/'); ?>
 
 @section('content')
     <div class="container">
@@ -101,7 +102,7 @@
             file_id = $("#modalTag").attr('data-whatever');
 
             $.ajax({
-                url: "http://127.0.0.1:8000/files/tags",
+                url: "<?php echo $APP_DOMAIN; ?>/files/tags",
                 method: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -123,7 +124,7 @@
             file_id = $("#modalTag").attr('data-whatever');
 
             $.ajax({
-                url: "http://127.0.0.1:8000/files/tags/delete",
+                url: "<?php echo $APP_DOMAIN; ?>/files/tags/delete",
                 method: 'POST',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
@@ -146,7 +147,7 @@
 
         function getFiles(){
             $.ajax({
-                url: "http://127.0.0.1:8000/file",
+                url: "<?php echo $APP_DOMAIN; ?>/file",
                 method: "GET",
                 error: function(res){
                     var response = res;
@@ -159,7 +160,7 @@
 
         function getFile(id){
             $.ajax({
-                url: "http://127.0.0.1:8000/file/" + id,
+                url: "<?php echo $APP_DOMAIN; ?>/file/" + id,
                 method: "GET",
                 error: function(res){
                 }
@@ -171,7 +172,7 @@
 
         function getCitations(file_id){
             $.ajax({
-                url: "http://127.0.0.1:8000/citation/file/" + file_id,
+                url: "<?php echo $APP_DOMAIN; ?>/citation/file/" + file_id,
                 method: "GET",
                 error: function(res){
                 }
@@ -183,7 +184,7 @@
 
         function getTags(){
             $.ajax({
-                url: "http://127.0.0.1:8000/tag/",
+                url: "<?php echo $APP_DOMAIN; ?>/tag/",
                 method: "GET",
                 error: function(res){
                 }
@@ -195,7 +196,7 @@
 
         function getTagsFile(file_id){
             $.ajax({
-                url: "http://127.0.0.1:8000/file/tags/" + file_id,
+                url: "<?php echo $APP_DOMAIN; ?>/file/tags/" + file_id,
                 method: "GET",
                 error: function(res){
                 }
@@ -229,7 +230,7 @@
 
         function update(id){
             $.ajax({
-                url: "http://127.0.0.1:8000/file/" + id,
+                url: "<?php echo $APP_DOMAIN; ?>/file/" + id,
                 method: 'PUT',
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),

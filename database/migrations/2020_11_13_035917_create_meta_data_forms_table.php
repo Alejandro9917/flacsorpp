@@ -18,13 +18,15 @@ class CreateMetaDataFormsTable extends Migration
             $table->string('form_name');
             $table->string('header');
             $table->string('priority');
-            $table->string('class_container');
+            $table->string('class_container')->nullable();
             $table->boolean('is_accordion');
             $table->boolean('is_collapsed');
-            $table->string('extra_js');
-            $table->string('extra_css');
+            $table->string('extra_js')->nullable();
+            $table->string('extra_css')->nullable();
             $table->boolean('is_required');
-            //$table->foreignId('file_type_id')->constrained();
+            
+            // $table->foreignId('file_type_id')->constrained();
+
             $table->timestamps();
         });
     }
