@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Metadata;
 use App\Models\Fields;
 use App\Models\FieldTypes;
+use App\Models\FileTypes;
+use App\Models\FileTypesMetadataForms;
 
 class MetadataController extends Controller
 {
@@ -13,6 +15,25 @@ class MetadataController extends Controller
     {
         return response()->json(Metadata::get());
     }
+
+    // Metodos para cargar vistas generales
+
+    public function display_file_types( Request $request){
+        try {
+            $file_types = FileTypes::all();
+            if($file_types != null){
+                return view('fileTypes.index')->with( 
+                    array(
+                        "file_types" => $file_types
+                    )
+                );
+            }
+        } catch (Exception $ex) {
+            return redirect('/metadata/create');
+        }
+    }
+    
+    // Metodos para cargar vistas de detalle de configuracion (que requieren id)
 
     public function display_fields( Request $request){
         try {
@@ -31,6 +52,25 @@ class MetadataController extends Controller
         }
     }
 
+    public function display_forms_by_file_type( Request $request){
+        try {
+            $myFileType = FileTypes::find($request->id);
+            $allMetadata = Metadata::all();
+            if($myFileType != null){
+                return view('fileTypes.forms')->with( 
+                    array(
+                        "myFileType" => $myFileType,
+                        "allMetadata" => $allMetadata
+                    )
+                );
+            }
+        } catch (Exception $ex) {
+            return redirect('/metadata/create');
+        }
+    }
+
+    // Obtener info de pantallas con detalles AJAX
+
     public function print_fields(Request $request, $metadata_id)
     {
         try {
@@ -42,6 +82,38 @@ class MetadataController extends Controller
             return redirect('/metadata/create');
         }
     }
+
+    // Mostrar la configuracion de forms de metadata de un filetype
+    public function print_fields_types_forms(Request $request, $file_type_id)
+    {
+        try {
+            $myFileType = FileTypes::find($file_type_id);
+
+            if($myFileType != null){
+                foreach ($myFileType->file_types_metadata_forms as $singlePivot) {
+                    $singlePivot->metadatas->fields;
+                }
+                return response()->json($myFileType);
+            }
+        } catch (Exception $ex) {
+            return redirect('/metadata/create');
+        }
+    }
+
+    // Metodos para refrescar con AJAX
+    public function print_field_types(Request $request)
+    {
+        try {
+            $all_file_types = FileTypes::all();
+            if($all_file_types != null){
+                return response()->json($all_file_types);
+            }
+        } catch (Exception $ex) {
+            return redirect('/metadata/create');
+        }
+    }
+
+    
 
     public function create()
     {
@@ -69,6 +141,35 @@ class MetadataController extends Controller
         return response()->json($metaData);
     }
 
+    public function store_file_types(Request $request)
+    {
+        //Validating recived data
+        $data = $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
+        //Final object with data
+        $field = FileTypes::create($data);
+        return response()->json($field);
+    }
+
+    //stores con foraneas
+
+    public function store_file_type_metadata_form(Request $request)
+    {
+        //Validating recived data
+        $data = $request->validate([
+            'file_type_id' => 'required',
+            'meta_data_forms_id' => 'required',
+            'visible' => 'boolean',
+        ]);
+
+        //Final object with data
+        $field = FileTypesMetadataForms::create($data);
+        return response()->json($field);
+    }
+
+
     public function store_field(Request $request)
     {
         //Validating recived data
@@ -91,6 +192,8 @@ class MetadataController extends Controller
         $field = Fields::create($data);
         return response()->json($field);
     }
+
+    
 
     public function show($id)
     {

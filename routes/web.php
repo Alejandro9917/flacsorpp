@@ -110,6 +110,17 @@ Route::get('/metadata/{id}/fields', [MetadataController::class, 'display_fields'
 Route::get('metadata/detail/{metadata_id}', [MetadataController::class, 'print_fields']);
 Route::post('metadata/store_field', [MetadataController::class, 'store_field']);
 
+
+Route::get('/file_types/create', [MetadataController::class, 'display_file_types']);
+Route::get('/file_types', [MetadataController::class, 'print_field_types']);
+Route::post('/file_types', [MetadataController::class, 'store_file_types']);
+// cargar pantalla de setup de formularios
+Route::get('file_types/{id}/forms', [MetadataController::class, 'display_forms_by_file_type']);
+//obtener los datos de la pantalla de setup de formularios de un fileType especifico
+Route::get('file_types/detail/{file_type_id}', [MetadataController::class, 'print_fields_types_forms']);
+// guardar la relacion de fileType y MetadataForm
+Route::post('file_types/store_form', [MetadataController::class, 'store_file_type_metadata_form']);
+
 // ----------------------------------------------------------------------------------------------------------
 
 //Route for tag controller
