@@ -108,7 +108,7 @@ Route::resource('/metadata', MetadataController::class)->except([
 })->name('campos-add'); /** */
 Route::get('/metadata/{id}/fields', [MetadataController::class, 'display_fields']);
 Route::get('metadata/detail/{metadata_id}', [MetadataController::class, 'print_fields']);
-Route::get('metadata/store_field', [MetadataController::class, 'store_field']);
+Route::post('metadata/store_field', [MetadataController::class, 'store_field']);
 
 // ----------------------------------------------------------------------------------------------------------
 

@@ -18,6 +18,6 @@ class Metadata extends Model
     ];
 
     public function fields(){
-        return $this->hasMany(Fields::class);
+        return $this->hasMany(Fields::class, 'meta_data_form_id');
     }
 }

@@ -9,10 +9,24 @@ class Fields extends Model
 {
     use HasFactory;
 
-    protected $table = 'metadata_fieds';
+    protected $table = 'metadata_fields';
 
+    protected $fillable = [
+        'field_name',
+        'is_required',
+        'container_class',
+        'id_element',
+        'class',
+        'validation_rule',
+        'default_value',
+        'placeholder',
+        'json_config',
+        'priority',
+        'field_type_id',
+        'meta_data_form_id'
+    ];
 
     public function forms(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Metadata::class,'meta_data_form_id','id');
     }
 }

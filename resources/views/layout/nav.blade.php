@@ -55,6 +55,9 @@
             <li class="{{setActive('')}}">
                 <a href="/metadata/create" >Meta Data</a>
             </li>
+            <li class="{{setActive('')}}">
+                <a href="/file_types/create" >Tipos de Archivos</a>
+            </li>
             <li>
                 <a href="/logout">Cerrar sesión</a>
             </li>
