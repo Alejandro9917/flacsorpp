@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\Collection;
 use App\Models\File;
+use App\Models\Metadata;
+use App\Models\Fields;
+use App\Models\FieldTypes;
+use App\Models\FileTypes;
+use App\Models\FileTypesMetadataForms;
 
 class FileController extends Controller
 {
@@ -18,7 +23,31 @@ class FileController extends Controller
 
     public function create()
     {
-        return view('files.index');
+        try {
+            $file_types = FileTypes::all();
+            if($file_types != null){
+                return view('files.index')->with( 
+                    array(
+                        "file_types" => $file_types
+                    )
+                );
+            }
+        } catch (Exception $ex) {
+            //TODO: check the redirection
+            return redirect('/metadata/create');
+        }
+    }
+
+    public function printForms(Request $request){
+        //$myMetadatas = FileTypesMetadataForms::where("file_type_id", "=", $request->file_type_id)->get();
+        $myFileType = FileTypes::find($request->file_type_id);
+        foreach ( $myFileType->fileTypesMetadataForms as $singlePivotMetaForm){
+            foreach($singlePivotMetaForm->metadata->fields as $singleField){
+                $singleField->fieldType;
+            }
+            
+        }
+        return response()->json($myFileType);
     }
 
     public function getChilds($collection_id){

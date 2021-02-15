@@ -38,7 +38,75 @@
     </div>
 
     <script type="text/javascript">
+
         $(document).ready(function(){
+
+            // ---------- New  Code ----------
+            $("#file_type_id").change(function(){ 
+                var element = $(this).find('option:selected');
+                console.log("Valor seleccionado");
+                form_drawer.html("");
+                console.log(element.val());
+                printForms(element.val());
+            }); 
+
+            var form_drawer = $("#form_drawer");
+
+            function printForms(file_type_id) {
+                
+                $.ajax({
+                    url: "{{ $APP_DOMAIN }}/file_types/forms",
+                    method: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    file_type_id: file_type_id,
+                },
+                }).done(function(res){
+                    console.log(res);
+                    form_drawer.append("<h4>"+ res.name + "</h4>");
+                    $.each(res.file_types_metadata_forms, function(i, singleForm) {
+                        printSingleForm(singleForm);
+                    });
+                    
+                });
+            }
+
+            function printSingleForm(singleForm){
+                var printHtml = "";
+                form = singleForm.metadata;
+                console.log(form);
+                form_drawer.append('<div class="panel-group" id="accordion_'+singleForm.id+"_"+form.id+'">');
+                form_drawer.append("<h5>"+ form.form_name + "</h5>");
+                printHtml += '<div class="panel panel-default">' +
+                        '<div class="panel-heading  well">' +
+                            '<h5 class="panel-title ">' +
+                                '<a data-toggle="collapse" data-parent="#accordion" href="#collapse_'+ form.id +'_field_'+ singleForm.id +'">' +
+                                '<span class="badge"> + '+  form.form_name + '</span></a>' +
+                            '</h5>' +
+                        '</div>' +
+                        '<div id="collapse_'+ form.id +'_field_'+ singleForm.id +'" class="panel-collapse collapse in">';
+                form.fields.map(function(field){
+                            printHtml +=
+                            '<div class="panel-body">' +
+                                '<table class="table">' +
+                                    '<tr><td>'+field.field_name+'</td><td> <input type="'+field.field_type.type+'" placeholder="'+field.placeholder+'" value=""></td></tr>' +
+                                '</table>' +
+                            '</div>' +
+                        '</div>';
+                        
+                });
+                printHtml +='</div>';
+                form_drawer.append(printHtml);
+            }
+
+
+            function printSingleField(field){
+
+            }
+
+            // ------ END new Code ----------
+
+
             getFiles();
 
             $('#modalFile').on('show.bs.modal', function (event) {
@@ -362,11 +430,19 @@
 
 
                         <label for="type">Tipo de documento</label>
-                        <input class="form-control" type="text" name="type" id="type" placeholder="Tipo de documento">
+                        <select class="form-control" name="file_type_id" id="file_type_id">
+                                <option value="0" selected disabled>Seleccione...</option>
+                                @foreach( $file_types as $single_file_type)
+                                    <option value="{{$single_file_type->id}}">{{$single_file_type->name}}</option>
+                                @endforeach
+                            </select>
 
 
                         <label for="status">Estado</label>
                         <input class="form-control" type="text" name="status" id="status" placeholder="Estado">
+                    </div>
+                    <div id="form_drawer" class="form-group">
+
                     </div>
 
                     <a id="send" type="submit" class="btn btn-success float-right" data-whatever="null"><i class="fas fa-cloud-upload-alt"></i>Guardar</a>

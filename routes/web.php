@@ -99,6 +99,8 @@ Route::resource('/metadata', MetadataController::class)->except([
     'edit', 'destroy'
 ])->middleware('auth');
 
+
+
 // ----------------------------------------------------------------------------------------------------------
 
 //Rutas para el componente de datos(meta data)
@@ -120,6 +122,12 @@ Route::get('file_types/{id}/forms', [MetadataController::class, 'display_forms_b
 Route::get('file_types/detail/{file_type_id}', [MetadataController::class, 'print_fields_types_forms']);
 // guardar la relacion de fileType y MetadataForm
 Route::post('file_types/store_form', [MetadataController::class, 'store_file_type_metadata_form']);
+
+//Routes to print meta-forms and fields
+Route::middleware('auth')->group(function(){
+    Route::post('/file_types/forms/', [FileController::class, 'printForms']);
+    
+});
 
 // ----------------------------------------------------------------------------------------------------------
 

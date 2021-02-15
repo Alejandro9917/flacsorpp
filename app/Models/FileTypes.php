@@ -20,8 +20,8 @@ class FileTypes extends Model
         return $this->hasMany(File::class);
     }
     //Relación con Citations
-    public function file_types_metadata_forms(){
-        return $this->hasMany(FileTypesMetadataForms::class, 'file_type_id');
+    public function fileTypesMetadataForms(){
+        return $this->hasMany(FileTypesMetadataForms::class,  'file_type_id', 'id');
     }
 
 }

@@ -22,7 +22,7 @@ class FileTypesMetadataForms extends Model
         return $this->belongsTo(FileType::class, 'file_type_id', 'id');
     }
     //Relación con MetadataForms
-    public function metadatas(){
+    public function metadata(){
         return $this->belongsTo(Metadata::class, 'meta_data_forms_id', 'id');
     }
 
